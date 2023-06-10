@@ -37,7 +37,12 @@
               </strong> 
             </div>
            <table class="table table-striped" id="users">
-              <tbody>                
+              <tbody> 
+                  <tr>
+                    <td colspan="3" class="text-center">
+                      <img class="img-thumbnail" src="<?= base_url('src/img/surat/'.$item['name_file'])?>" alt="" srcset="">
+                    </td>
+                  </tr>               
                   <tr>                    
                       <td width="100px">NAMA BARANG</td>
                       <td width="50px">:</td>
