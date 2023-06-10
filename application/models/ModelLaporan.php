@@ -83,7 +83,7 @@ class ModelLaporan extends CI_Model {
 	public function getLokasi()
 	{
 		$query = $this->db->get('lokasi_aset');
-		return $query->result_array();
+		return $query->result();
 	}
 
 	public function getLokasiId($id_lokasi)
