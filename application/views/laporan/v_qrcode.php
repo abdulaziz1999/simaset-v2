@@ -39,14 +39,14 @@
           </div>
         </div>
           <div class="card-body">
-              <form action="<?=base_url('laporan/print_qrcode')?>" method="post">
+              <form action="<?=base_url('laporan/search_qrcode')?>" method="post">
                 <div class="row">
                     <div class="col-4">
                         <select name="id_lokasi" class="form-control" required>
                           <option value="">- Lokasi Aset --</option>
-                          <?php foreach ($lokasi as $row): ?>
-                            <option value="<?=$row['id_lokasi'];?>"><?=$row['nama_lokasi'];?></option>
-                          <?php endforeach ?>                              
+                          <?php foreach($lokasi as $row): ?>
+                            <option value="<?=$row->id_lokasi;?>"><?=$row->nama_lokasi;?></option>
+                          <?php endforeach; ?>                              
                         </select>
                     </div>
                     <div class="col-4">
@@ -60,7 +60,7 @@
                       </select>
                     </div>
                     <div class="col">
-                      <button type="submit" class="btn btn-block btn-outline-primary">Print</button>
+                      <button type="submit" class="btn btn-block btn-outline-primary">Cari</button>
                     </div>
                     <div class="col">
                       <button type="reset" class="btn btn-block btn-outline-danger">Reset</button>

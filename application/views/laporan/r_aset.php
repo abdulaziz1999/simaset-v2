@@ -44,17 +44,19 @@
                     <div class="col-4">
                         <select name="id_lokasi" class="form-control" required>
                           <option value="">- Lokasi Aset --</option>
-                          <?php foreach ($lokasi as $row): ?>
-                            <option value="<?=$row['id_lokasi'];?>"><?=$row['nama_lokasi'];?></option>
-                          <?php endforeach ?>                              
+                          <?php foreach($lokasi as $row): ?>
+                            <option value="<?=$row->id_lokasi;?>" <?= $lok['id_lokasi'] == $row->id_lokasi ? 'selected' : ''?>><?=$row->nama_lokasi;?></option>
+                          <?php endforeach; ?>                              
                         </select>
                     </div>
                     <div class="col-4">
                       <select name="tahun_perolehan" class="form-control" required>
-                        <option value="">- Tahun Perolehan --</option>
+                        <option value="">- Tahun Anggaran --</option>
                         <?php 
-                        for($i = 2010 ; $i <= date('Y'); $i++){
-                          echo "<option value='$i'>$i</option>";
+                        for($i = 2015 ; $i <= date('Y'); $i++){
+                          ?>
+                            <option value='<?= $i?>' <?= $this->input->post('tahun_perolehan') == $i ? 'selected' : ''?> ><?= $i?></option>
+                          <?php
                         }
                         ?>                          
                       </select>

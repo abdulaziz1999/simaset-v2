@@ -80,8 +80,8 @@
   	</div>
 
   	<script>
-  		window.print();
-		window.onafterprint = window.close;
+  		// window.print();
+		// window.onafterprint = window.close;
   	</script>
     
 
