@@ -32,9 +32,6 @@ class Laporan extends CI_Controller {
 		$this->load->view('layouts/header',$data);
 		$this->load->view('laporan/v_laporan',$data);
 		$this->load->view('layouts/footer');
-
-		$this->output->enable_profiler(TRUE);
-		
 	}
 
 	public function searchAset()
@@ -156,7 +153,7 @@ class Laporan extends CI_Controller {
 			$this->load->view('layouts/footer');
 		} else {
 			$this->session->set_flashdata('gagal', 'Ditemukan');
-		    redirect('laporan/aset');
+		    redirect('laporan/penghapusan');
 		}
 	}
 
@@ -172,7 +169,7 @@ class Laporan extends CI_Controller {
 			$this->load->view('laporan/p_penghapusan',$data);
 		} else {
 			$this->session->set_flashdata('gagal', 'Ditemukan');
-		    redirect('laporan/aset');
+		    redirect('laporan/penghapusan');
 		}
 	}
 
@@ -223,13 +220,13 @@ class Laporan extends CI_Controller {
 	{
 		@$id_lokasi = $this->input->post('id_lokasi');
 		@$tahun_perolehan = $this->input->post('tahun_perolehan');
-		$data = array(
+		$data = [
 			'title' => 'Laporan Aset',
 			'active_menu_lp' => 'menu-open',
 			'active_menu_lpr' => 'active',
 			'active_menu_qr' => 'active',
 			'lokasi' => $this->ml->getLokasi()  
-		);
+		];
 
 		if ($id_lokasi != null && $tahun_perolehan != null) {
 			$data['qrdata'] = $this->ml->getInventorytQr($id_lokasi,$tahun_perolehan);
@@ -239,6 +236,31 @@ class Laporan extends CI_Controller {
 		$this->load->view('layouts/header',$data);
 		$this->load->view('laporan/v_qrcode',$data);
 		$this->load->view('layouts/footer');
+	}
+
+	public function searchQrCode()
+	{
+		@$id_lokasi = $this->input->post('id_lokasi');
+		@$tahun_perolehan = $this->input->post('tahun_perolehan');
+		$data = [
+			'title' => 'Laporan Aset',
+			'active_menu_lp' => 'menu-open',
+			'active_menu_lpr' => 'active',
+			'active_menu_qr' => 'active',
+			'lokasi' => $this->ml->getLokasi(),
+			'qrdata' => $this->ml->getInventorytQr($id_lokasi,$tahun_perolehan),
+			'lok' => $this->ml->getLokasiId($id_lokasi)
+		];
+
+		if (count($data['qrdata'])>0) {
+			$this->load->view('layouts/header',$data);
+			$this->load->view('laporan/r_qrcode',$data);
+			$this->load->view('layouts/footer');
+		} else {
+			$this->session->set_flashdata('gagal', 'Ditemukan');
+		    redirect('laporan/qr_code');
+		}
+		
 	}
 
 	public function printQrcode()
