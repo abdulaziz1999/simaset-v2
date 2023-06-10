@@ -121,6 +121,7 @@ $route['laporan/print_penghapusan/(:any)/(:any)'] = 'Laporan/printPenghapusan/(:
 $route['laporan/export_penghapusan/(:any)/(:any)'] = 'Laporan/export_penghapusan/(:any)/(:any)';
 //Laporan QR Code
 $route['laporan/qr_code'] = 'Laporan/qrcodeAset';
+$route['laporan/search_qrcode'] = 'Laporan/searchQrCode';
 $route['laporan/print_qrcode'] = 'Laporan/printQrcode';
 //Laporan Pengadaan
 $route['laporan/pengadaan'] = 'Laporan/pengadaan';
