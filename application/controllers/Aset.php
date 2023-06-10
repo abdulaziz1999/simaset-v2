@@ -77,7 +77,7 @@ class Aset extends CI_Controller {
 
 	        $image_name = $image.'.png'; //buat name dari qr code sesuai dengan nim
 
-	        $url = 'http://urlkamu.com/aset/detail/'.$id_aset;
+	        $url = base_url().'aset/detail/'.$id_aset;
 
 	        $params['data'] = $url; //data yang akan di jadikan QR CODE
 	        $params['level'] = 'H'; //H=High
