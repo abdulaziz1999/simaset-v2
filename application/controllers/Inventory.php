@@ -72,7 +72,7 @@ class Inventory extends CI_Controller {
 
 	        $image_name = $image.'.png'; 
 
-	        $url = 'http://urlkamu.com/detail-inventory/'.$random_id;
+	        $url = base_url().'detail-inventory/'.$random_id;
 
 	        $params['data'] = $url; 
 	        $params['level'] = 'H'; 
