@@ -20,6 +20,11 @@ $route['guest/(:any)'] = 'Welcome/detail_inventory/(:any)';
 
 //Dashboard
 $route['home'] = 'Home/index';
+$route['dashboard'] = 'Dashboard/index';
+$route['berita_acara'] = 'Berita_acara/index';
+$route['berita_acara/add'] = 'Berita_acara/add';
+$route['berita_acara/edit/(:any)'] = 'Berita_acara/edit/(:any)';
+$route['berita_acara/detail/(:any)'] = 'Berita_acara/detail/(:any)';
 
 //Statistik
 $route['statistik'] = 'Statistik/index';

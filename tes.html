@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AmCharts Map - Indonesia</title>
+  <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/maps.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/geodata/indonesiaHigh.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+  <style>
+    #chartdiv {
+      width: 100%;
+      height: 500px;
+    }
+  </style>
+</head>
+<body>
+  <div id="chartdiv"></div>
+
+  <script>
+    // Sample data
+
+
+    // Create map instance
+    var chart = am4core.create("chartdiv", am4maps.MapChart);
+    
+    // Set map definition
+    chart.geodata = am4geodata_indonesiaHigh;
+    
+    // Set projection
+    chart.projection = new am4maps.projections.Miller();
+    
+    // Create map polygon series
+    var polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
+    
+    // Exclude Antartica from the series
+    polygonSeries.exclude = ["AQ"];
+    
+    // Make map load polygon data (state shapes and names) from GeoJSON
+    polygonSeries.useGeodata = true;
+    polygonSeries.data = [
+  { "id": "AC", "name": "Aceh2", "value": 100 },
+  { "id": "SU", "name": "Sumatera Utara", "value": 200 },
+  { "id": "SB", "name": "Sumatera Barat", "value": 150 },
+  { "id": "RI", "name": "Riau", "value": 120 },
+  { "id": "JA", "name": "Jambi", "value": 180 },
+  { "id": "SS", "name": "Sumatera Selatan", "value": 250 },
+  { "id": "BE", "name": "Bengkulu", "value": 90 },
+  { "id": "LA", "name": "Lampung", "value": 170 },
+  { "id": "BB", "name": "Kepulauan Bangka Belitung", "value": 200 },
+  { "id": "KR", "name": "Kepulauan Riau", "value": 150 },
+  { "id": "JK", "name": "DKI Jakarta", "value": 300 },
+  { "id": "JB", "name": "Jawa Barat", "value": 400 },
+  { "id": "JT", "name": "Jawa Tengah", "value": 350 },
+  { "id": "JI", "name": "Jawa Timur", "value": 450 },
+  { "id": "YO", "name": "Daerah Istimewa Yogyakarta", "value": 250 },
+  { "id": "BA", "name": "Bali", "value": 300 },
+  { "id": "NB", "name": "Nusa Tenggara Barat", "value": 180 },
+  { "id": "NT", "name": "Nusa Tenggara Timur", "value": 220 },
+  { "id": "KB", "name": "Kalimantan Barat", "value": 200 },
+  { "id": "KT", "name": "Kalimantan Tengah", "value": 230 },
+  { "id": "KS", "name": "Kalimantan Selatan", "value": 280 },
+  { "id": "KI", "name": "Kalimantan Timur", "value": 320 },
+  { "id": "KU", "name": "Kalimantan Utara", "value": 150 },
+  { "id": "SA", "name": "Sulawesi Utara", "value": 270 },
+  { "id": "ST", "name": "Sulawesi Tengah", "value": 220 },
+  { "id": "SG", "name": "Sulawesi Selatan", "value": 320 },
+  { "id": "SN", "name": "Sulawesi Tenggara", "value": 270 },
+  { "id": "GO", "name": "Gorontalo", "value": 150 },
+  { "id": "SR", "name": "Sulawesi Barat", "value": 190 },
+  { "id": "MA", "name": "Maluku", "value": 200 },
+  { "id": "MU", "name": "Maluku Utara", "value": 180 },
+  { "id": "PA", "name": "Papua", "value": 250 },
+  { "id": "PB", "name": "Papua Barat", "value": 200 }
+];
+    // Configure series
+    var polygonTemplate = polygonSeries.mapPolygons.template;
+    polygonTemplate.tooltipText = "{names}: {value}";
+    polygonTemplate.fill = am4core.color("#74B266");
+    polygonTemplate.stroke = am4core.color("#FFFFFF");
+    
+    // Add zoom control
+    chart.zoomControl = new am4maps.ZoomControl();
+    
+    // Set up heat rule for colors
+    polygonSeries.heatRules.push({
+      property: "fill",
+      target: polygonSeries.mapPolygons.template,
+      min: am4core.color("#CDE3A4"),
+      max: am4core.color("#006600")
+    });
+    
+    // Add data
+    
+  </script>
+</body>
+</html>

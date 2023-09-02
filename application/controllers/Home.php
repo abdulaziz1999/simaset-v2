@@ -7,9 +7,9 @@ class Home extends CI_Controller {
 	{
 		parent::__construct();
 		
-		if ($this->session->userdata("logged")<>1) {
-	      redirect(site_url('login'));
-	    }
+		// if ($this->session->userdata("logged")<>1) {
+	    //   redirect(site_url('login'));
+	    // }
 
 	    $this->load->model('ModelAset','ma');
 	    $this->load->model('Master','m');
