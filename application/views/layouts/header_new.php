@@ -121,13 +121,13 @@
         <ul class="nav nav-pills nav-sidebar flex-column nav-flat" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item has-treeview">
           <a href="<?=base_url('dashboard')?>" class="nav-link <?=isset($active_menu_db)?$active_menu_db:'' ?>">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <i class="nav-icon fas fa-home"></i>
             <p>Dashboard</p>
           </a>
         </li>
         <li class="nav-item has-treeview">
           <a href="<?=base_url('berita_acara')?>" class="nav-link <?=isset($active_menu_berita_acara)?$active_menu_berita_acara:'' ?>">
-            <i class="nav-icon fas fa-chart-pie"></i>
+            <i class="nav-icon fas fa-map"></i>
             <p>Berita Acara</p>
           </a>
         </li>

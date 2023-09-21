@@ -52,7 +52,7 @@ class Login extends CI_Controller {
 				);
 				$this->session->set_userdata($data);
 
-				redirect('home');
+				redirect('dashboard');
 			} else {
 				$this->session->set_flashdata('gagal_login', 'Username dan Password Salah');
 				redirect('login');

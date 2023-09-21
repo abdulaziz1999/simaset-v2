@@ -9,8 +9,8 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="<?=base_url('home')?>">Home</a></li>
-            <li class="breadcrumb-item active">Transaksi Peminjaman</li>
+          <li class="breadcrumb-item"><a href="<?=base_url('dashboard')?>">Dashboard</a></li>
+            <li class="breadcrumb-item active">Detail</li>
           </ol>
         </div>
       </div>
@@ -26,9 +26,15 @@
     <div class="card">
       <div class="card-header">
         <h3 class="card-title">
-          <!-- <a href="<?=base_url('berita_acra/add')?>" class="btn btn-block bg-gradient-primary">
-            Tambah Data
-          </a> -->
+          <div class="btn-group">
+            <a href="<?=base_url('add-barang/'.$this->uri->segment(3))?>" class="btn btn-sm bg-gradient-primary">
+              <i class="fa fa-plus"></i> Tambah Data
+            </a>
+            &nbsp;
+            <a href="<?=base_url('import-data')?>" class="btn btn-sm bg-gradient-success">
+            <i class="fa fa-file-excel"></i> Import Data
+            </a>
+          </div>
         </h3>
 
         <div class="card-tools">
@@ -57,7 +63,7 @@
                   <tr>
                     <td>Tanggal Penerimaan</td>
                     <td>:</td>
-                    <td>&nbsp;<?= $detail->tgl_penerimaan?></td>
+                    <td>&nbsp;<?= tgl_indo($detail->tgl_penerimaan)?></td>
                   </tr>
                   <tr>
                     <td>Diterima Dari</td>
@@ -139,10 +145,10 @@
   <script src="<?=base_url()?>src/backend/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
   <script>
     $(function () {
-      // $("#example1").DataTable({
-      //   "language": {
-      //     "sSearch": "Cari"
-      //   }
-      // });
+      $("#example1").DataTable({
+        "language": {
+          "sSearch": "Cari"
+        }
+      });
     });
   </script>

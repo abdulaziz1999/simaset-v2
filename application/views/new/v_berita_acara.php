@@ -9,8 +9,8 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="<?=base_url('home')?>">Home</a></li>
-            <li class="breadcrumb-item active">Transaksi Peminjaman</li>
+            <li class="breadcrumb-item"><a href="<?=base_url('dashboard')?>">Dashboard</a></li>
+            <li class="breadcrumb-item active">Berita Acara</li>
           </ol>
         </div>
       </div>
@@ -26,8 +26,8 @@
     <div class="card">
       <div class="card-header">
         <h3 class="card-title">
-          <a href="<?=base_url('berita_acra/add')?>" class="btn btn-block bg-gradient-primary">
-            Tambah Data
+          <a href="<?=base_url('berita_acara/form')?>" class="btn btn-sm bg-gradient-primary">
+            <i class="fa fa-plus"></i> Tambah Data
           </a>
         </h3>
 
@@ -61,7 +61,7 @@
                 <tr>
                     <td><?= $no++?></td>
                     <td><?= $row->no_berita?></td>
-                    <td><?= $row->tgl_penerimaan?></td>
+                    <td><?= tgl_indo($row->tgl_penerimaan)?></td>
                     <td><?= $row->diterima_dari?></td>
                     <td><?= $row->no_kontrak?></td>
                     <td><?= $row->no_pptk?></td>
@@ -69,10 +69,10 @@
                     <td><?= $row->kegiatan?></td>
                     <td><?= $row->no_arsip?></td>
                     <td>
-                      <button class="btn btn-sm btn-success"> file</button>
+                      <button class="btn btn-sm btn-warning"> <i class="fa fa-upload"></i></button>
                     </td>
                     <td>
-                      <a href="<?= base_url('berita_acara/detail/'.$row->id_berita)?>" class="btn btn-sm btn-success"> Detail</a>
+                      <a href="<?= base_url('berita_acara/detail/'.$row->id_berita)?>" class="btn btn-sm btn-success"> <i class="fa fa-eye"></i></a>
                     </td>
                 </tr>
               <?php endforeach ?>

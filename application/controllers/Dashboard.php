@@ -26,7 +26,7 @@ class Dashboard extends CI_Controller {
 			'users' 			=> $this->m->getTotalData('users'),
 		);
 		$this->load->view('layouts/header_new',$data);
-		$this->load->view('layouts/content',$data);
+		$this->load->view('new/dashboard',$data);
 		$this->load->view('layouts/footer');
 	}
 
