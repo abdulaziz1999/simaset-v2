@@ -42,48 +42,6 @@ class Berita_acara extends CI_Controller {
 		$this->load->view('layouts/footer');
 	}
 
-	public function form()
-	{
-		$data = array(
-			'title' 					=> 'Detail Aset',
-			'active_menu_berita_acara' 	=> 'active',
-			'detail' 					=> $this->db->get_where('tb_berita_acara',['id_berita' => $this->uri->segment(3)])->row(), 
-			'data' 						=> $this->db->get_where('tb_barang',['berita_id' => $this->uri->segment(3)]),  
-		);
-
-		$this->load->view('layouts/header_new',$data);
-		$this->load->view('new/form',$data);
-		$this->load->view('layouts/footer');
-	}
-
-	public function form_barang()
-	{
-		$data = array(
-			'title' 					=> 'Detail Aset',
-			'active_menu_berita_acara' 	=> 'active',
-			'detail' 					=> $this->db->get_where('tb_berita_acara',['id_berita' => $this->uri->segment(3)])->row(), 
-			'data' 						=> $this->db->get_where('tb_barang',['berita_id' => $this->uri->segment(3)]),  
-		);
-
-		$this->load->view('layouts/header_new',$data);
-		$this->load->view('new/add_barang',$data);
-		$this->load->view('layouts/footer');
-	}
-
-	public function edit()
-	{
-		$data = array(
-			'title' 					=> 'Detail Aset',
-			'active_menu_berita_acara' 	=> 'active',
-			'detail' 					=> $this->db->get_where('tb_berita_acara',['id_berita' => $this->uri->segment(3)])->row(), 
-			'data' 						=> $this->db->get_where('tb_barang',['berita_id' => $this->uri->segment(3)]),  
-		);
-
-		$this->load->view('layouts/header_new',$data);
-		$this->load->view('new/edit',$data);
-		$this->load->view('layouts/footer');
-	}
-
 	public function save_berita(){
 		$data = [
 			'no_berita' 		=> $this->input->post('no_berita',TRUE),
@@ -97,7 +55,7 @@ class Berita_acara extends CI_Controller {
 		];
 
 		$this->db->insert('tb_berita_acara',$data);
-		redirect(base_url('berita_acara'));
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	public function save_barang(){
@@ -114,8 +72,7 @@ class Berita_acara extends CI_Controller {
 		];
 
 		$this->db->insert('tb_barang',$data);
-		redirect(base_url('berita_acara/detail/'.$uri));
-		
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	public function update_berita($id_berita){
@@ -146,6 +103,114 @@ class Berita_acara extends CI_Controller {
 
 		$this->db->update('tb_barang',$data,['id_barang' => $id_barang]);
 		redirect($_SERVER['HTTP_REFERER']);
+	}
+
+	public function upload_config($path) {
+		if (!is_dir($path)) {
+			mkdir($path, 0777, TRUE);
+		}
+		
+		$config['upload_path']    = './'.$path;
+		$config['allowed_types']  = 'csv|CSV|xlsx|XLSX|xls|XLS';
+		$config['max_filename']   = '255';
+		$config['encrypt_name']   = TRUE;
+		$config['max_size']       = 4096;
+	
+		$this->upload->initialize($config);
+	}
+
+	public function upload() {
+		$path 		= 'storage/';
+		$json 		= [];
+		$this->upload_config($path);
+		if (!$this->upload->do_upload('file')) {
+			$json = [
+				'error_message' => $this->upload->display_errors(),
+			];
+		} else {
+			
+			$lastCode = getLastCodeNrm();
+        if (empty($lastCode)) {
+            $nextCode = date('y').date('m').'0001';
+        } else {
+            $lastNumericPart = (int)substr($lastCode, 6);
+            $nextNumericPart = $lastNumericPart + 1;
+            $nextCode = date('y').date('m').str_pad($nextNumericPart, 4, '0', STR_PAD_LEFT);
+        }
+
+			$file_data 	= $this->upload->data();
+			$file_name 	= $path.$file_data['file_name'];
+			$arr_file 	= explode('.', $file_name);
+			$extension 	= end($arr_file);
+			
+			if('csv' == $extension) {
+				$reader 	= new \PhpOffice\PhpSpreadsheet\Reader\Csv();
+			} else {
+				$reader 	= new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+			}
+			$spreadsheet 	= $reader->load($file_name);
+			$sheet_data 	= $spreadsheet->getActiveSheet()->toArray();
+			$list 			= [];
+
+			foreach($sheet_data as $key => $val) {
+				if($key != 0) {
+					$result 	= '';
+					if($result) {
+					} else {
+						$list [] = [
+							'nrm'				=> $nextCode,
+							'nama'				=> $val[0],
+							'nik'			  	=> $val[1],
+							'nopeg'				=> $val[2],
+							'tempat_lahir'		=> $val[3],
+							'tanggal_lahir'		=> $val[4],
+							'jenis_kelamin'		=> $val[5],
+							'id_provinsi'		=> provinsiId($val[6]),
+							'id_kabupaten'		=> kabupatenId($val[7]),
+							'id_kecamatan'		=> kecamatanId($val[8]),
+							'id_kelurahan'		=> kelurahanId($val[9]),
+							'status_pernikahan'	=> $val[10],
+							'jenis_pekerjaan'	=> jenis_pekerjaan($val[11]),
+							'perusahaan_id'		=> $this->input->post('perusahaan_id'),
+							'unit_id'			=> sess('unit_id'),
+							'lokasi_id'			=> $this->input->post('lokasi_id'),
+						];
+
+						$nextNumericPart++;
+						// Update the next code with the incremented numeric portion
+						$nextCode = date('y').date('m').str_pad($nextNumericPart, 4, '0', STR_PAD_LEFT);
+					}
+				}
+			}
+			if(file_exists($file_name))
+				unlink($file_name);
+			if(count($list) > 0) {
+				$this->db->trans_start();
+				$result 	= $this->my_model->insert_batch('m_pasien',$list);
+				$this->db->trans_complete();
+
+				if ($this->db->trans_status() === FALSE) {
+					$json = [
+						'error_message' => "Import Data gagal. Silakan coba lagi."
+					];
+				} else {
+					if ($result) {
+						$json = [
+							'success_message' => "All Entries are imported successfully.",
+						];
+					} else {
+						$json = [
+							'error_message' => "Something went wrong. Please try again."
+						];
+					}
+				}
+			} else {
+				$json = [
+					'error_message' => "No new record is found.",
+				];
+			}
+		}
+		echo json_encode($json);
 	}
 
 }
