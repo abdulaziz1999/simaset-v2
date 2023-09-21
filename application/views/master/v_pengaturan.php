@@ -42,7 +42,7 @@
 
               <ul class="list-group list-group-unbordered mb-3">
                 <li class="list-group-item text-center">
-                  <b>Inventroy Apps</b>
+                  <b>Aset Apps</b>
                 </li>
               </ul>
             </div>
