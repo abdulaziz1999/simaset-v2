@@ -109,7 +109,7 @@
                 <div class="inner">
                   <h3><?=$users;?></h3>
 
-                  <p>User</p>
+                  <p>Pengguna</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-person"></i>
