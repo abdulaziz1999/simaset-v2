@@ -108,7 +108,7 @@ class User extends CI_Controller {
 	public function pengaturan()
 	{
 		$data = array(
-			'title' => 'Data User',
+			'title' => 'Data Pengguna',
 			'active_menu_png' => 'active',  
 		);
 		$this->load->view('layouts/header_new',$data);

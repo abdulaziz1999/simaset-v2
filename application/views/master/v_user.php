@@ -25,7 +25,7 @@
   <section class="content">
 
     <!-- Default box -->
-    <div class="card">
+    <div class="card card-primary card-outline">
       <div class="card-header">
         <?php if ($this->session->flashdata('gagal_store')) { ?>
           <div class="alert alert-danger col-md-12"> 
