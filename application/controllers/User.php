@@ -26,7 +26,7 @@ class User extends CI_Controller {
 			'active_menu_user' => 'active',
 			'user' => $this->mu->getDataUser()  
 		);
-		$this->load->view('layouts/header',$data);
+		$this->load->view('layouts/header_new',$data);
 		$this->load->view('master/v_user',$data);
 		$this->load->view('layouts/footer');
 	}
@@ -111,7 +111,7 @@ class User extends CI_Controller {
 			'title' => 'Data User',
 			'active_menu_png' => 'active',  
 		);
-		$this->load->view('layouts/header',$data);
+		$this->load->view('layouts/header_new',$data);
 		$this->load->view('master/v_pengaturan',$data);
 		$this->load->view('layouts/footer');
 	}
