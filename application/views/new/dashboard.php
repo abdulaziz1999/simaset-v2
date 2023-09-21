@@ -50,44 +50,44 @@
               ?>
 
             </h5>
-            Selamat Datang di Website Aplikasi Inventory 
+            Selamat Datang di Website Aplikasi Aset 
           </div>
           <?php if ($this->session->userdata('role')=='1'): ?>
           <div class="row">
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-4 col-6">
               <!-- small box -->
               <div class="small-box bg-info">
                 <div class="inner">
-                  <h3><?=$inventory;?></h3>
+                  <h3><?=$berita_acara;?></h3>
 
-                  <p>Total Inventory</p>
+                  <p>Total Berita Acara</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-android-home"></i>
                 </div>
-                <a href="<?=base_url('inventory')?>" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?=base_url('berita_acara')?>" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-4 col-6">
               <!-- small box -->
               <div class="small-box bg-success">
                 <div class="inner">
                   <h3><?=$barang;?></h3>
 
-                  <p>Barang</p>
+                  <p>Total Barang Barang</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-android-desktop"></i>
                 </div>
-                <a href="<?=base_url('barang')?>" class="small-box-footer">Selengkapnya 
+                <a href="<?=base_url('berita_acara')?>" class="small-box-footer">Selengkapnya 
                   <i class="fas fa-arrow-circle-right"></i>
                 </a>
               </div>
             </div>
             <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
+            <!-- <div class="col-lg-3 col-6">
+            
               <div class="small-box bg-danger">
                 <div class="inner">
                   <h3><?=$lokasi_aset;?></h3>
@@ -101,9 +101,9 @@
                   <i class="fas fa-arrow-circle-right"></i>
                 </a>
               </div>
-            </div>
+            </div> -->
             <!-- ./col -->
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-4 col-6">
               <!-- small box -->
               <div class="small-box bg-warning">
                 <div class="inner">
