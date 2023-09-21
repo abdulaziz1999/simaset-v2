@@ -23,10 +23,10 @@
   <section class="content">
 
     <!-- Default box -->
-    <div class="card">
+    <div class="card card-primary card-outline">
       <div class="card-header">
         <h3 class="card-title">
-          <a href="<?=base_url('berita_acara/form')?>" class="btn btn-sm bg-gradient-primary">
+          <a href="#" class="btn btn-sm bg-gradient-primary" data-toggle="modal" data-target="#modal-add-barang">
             <i class="fa fa-plus"></i> Tambah Data
           </a>
         </h3>
@@ -52,7 +52,7 @@
                 <th>Program</th>
                 <th>Kegitan</th>
                 <th>No Arsip</th>
-                <th>File</th>
+                <th>Upload File</th>
                 <th>Aksi</th>
               </tr>
             </thead>
@@ -80,17 +80,16 @@
           </table>
           </div>           
         </div>
-        <!-- /.card-body -->
         <div class="card-footer">
 
         </div>
-        <!-- /.card-footer-->
       </div>
-      <!-- /.card -->
 
     </section>
-    <!-- /.content -->
   </div>
+
+  <?php $this->load->view('new/modal_berita_acara')?>
+
   <script src="<?=base_url()?>src/backend/plugins/datatables/jquery.dataTables.js"></script>
   <script src="<?=base_url()?>src/backend/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
   <script>
