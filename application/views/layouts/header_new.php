@@ -131,6 +131,18 @@
             <p>Berita Acara</p>
           </a>
         </li>
+        <li class="nav-item has-treeview">
+          <a href="<?=base_url('users')?>" class="nav-link <?=isset($active_menu_user)?$active_menu_user:'' ?>">
+            <i class="nav-icon fa fa-users"></i>
+            <p>User</p>
+          </a>
+        </li>
+        <li class="nav-item has-treeview">
+          <a href="<?=base_url('pengaturan')?>" class="nav-link <?=isset($active_menu_png)?$active_menu_png:'' ?>">
+            <i class="nav-icon fas fa-cog"></i>
+            <p>Pengaturan</p>
+          </a>
+        </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
