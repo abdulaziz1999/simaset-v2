@@ -134,7 +134,7 @@
         <li class="nav-item has-treeview">
           <a href="<?=base_url('users')?>" class="nav-link <?=isset($active_menu_user)?$active_menu_user:'' ?>">
             <i class="nav-icon fa fa-users"></i>
-            <p>User</p>
+            <p>Pengguna</p>
           </a>
         </li>
         <li class="nav-item has-treeview">
