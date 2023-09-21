@@ -52,7 +52,7 @@
         </div>
         <!-- /.col -->
         <div class="col-md-9">
-          <div class="card">
+          <div class="card card-primary card-outline">
             <div class="card-header p-2">
               <ul class="nav nav-pills">
                 <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Ubah Profile</a></li>
