@@ -20,10 +20,9 @@ class Dashboard extends CI_Controller {
 		$data = array(
 			'title' 			=> 'Dashboard',
 			'active_menu_db' 	=> 'active',
-			'inventory' 		=> $this->m->getTotalData('inventory'),
-			'barang' 			=> $this->m->getTotalData('barang'),
-			'lokasi_aset' 		=> $this->m->getTotalData('lokasi_aset'),
-			'users' 			=> $this->m->getTotalData('users'),
+			'berita_acara' 		=> $this->db->get('tb_berita_acara')->num_rows(),
+			'barang' 			=> $this->db->get('tb_barang')->num_rows(),
+			'users' 			=> $this->db->get('users')->num_rows(),
 		);
 		$this->load->view('layouts/header_new',$data);
 		$this->load->view('new/dashboard',$data);
