@@ -41,15 +41,15 @@ class Login extends CI_Controller {
 			if ($cek == 1) {
 
 				$row = $this->ml->data_login($username,md5($password));
-				$data = array(
-					'logged' => TRUE,
-					'id_user' => $row->id_user,
-					'username' => $row->username,
+				$data = [
+					'logged' 	=> TRUE,
+					'id_user' 	=> $row->id_user,
+					'username' 	=> $row->username,
 					'nama_user' => $row->nama_user,
-					'jabatan' => $row->jabatan,
-					'role' => $row->role,
-					'foto' => $row->foto
-				);
+					'jabatan' 	=> $row->jabatan,
+					'role' 		=> $row->role,
+					'foto' 		=> $row->foto
+				];
 				$this->session->set_userdata($data);
 
 				redirect('dashboard');
