@@ -39,6 +39,18 @@ function laporan($angka){
  
 }
 
+function count_file($id){
+	$ci = get_instance();
+	$data = $ci->db->get_where('tb_file',['berita_id' => $id])->num_rows();
+	return $data;
+}
+
+function count_barang($id){
+	$ci = get_instance();
+	$data = $ci->db->get_where('tb_barang',['berita_id' => $id])->num_rows();
+	return $data;
+}
+
 function count_content($where)
 {
     // get main CodeIgniter object
