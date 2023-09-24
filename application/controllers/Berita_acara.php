@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 class Berita_acara extends CI_Controller {
 
 	public function __construct()
@@ -13,6 +16,8 @@ class Berita_acara extends CI_Controller {
 
 		//load model
 		$this->load->model('ModelStatistik','ms');
+		$this->load->library('ciqrcode');
+		$this->load->library('uuid');
 	}
 
 	public function index()
@@ -28,6 +33,7 @@ class Berita_acara extends CI_Controller {
 		$this->load->view('layouts/footer');
 	}
 
+	//detail berita acara
 	public function detail()
 	{
 		$data = array(
@@ -35,11 +41,39 @@ class Berita_acara extends CI_Controller {
 			'active_menu_berita_acara' 	=> 'active',
 			'detail' 					=> $this->db->get_where('tb_berita_acara',['id_berita' => $this->uri->segment(3)])->row(), 
 			'data' 						=> $this->db->get_where('tb_barang',['berita_id' => $this->uri->segment(3)]),  
+			'file' 						=> $this->db->get_where('tb_file',['berita_id' => $this->uri->segment(3)]),  
 		);
 
 		$this->load->view('layouts/header_new',$data);
 		$this->load->view('new/v_detail_berita_acara',$data);
 		$this->load->view('layouts/footer');
+	}
+
+	public function detail_barang()
+	{
+		$berita_id = $this->db->get_where('tb_barang',['id_barang' => $this->uri->segment(2)])->row()->berita_id;
+		$data = [
+			'item' => $this->db->get_where('tb_barang',['id_barang' => $this->uri->segment(2)])->row_array(),
+			'detail' => $this->db->get_where('tb_berita_acara',['id_berita' => $berita_id])->row_array()
+		];
+
+		$this->load->view('new/detail_barang',$data);
+	}
+
+	//PDF
+	public function print()
+	{
+		$data = array(
+			'title' 					=> 'Detail Aset',
+			'active_menu_berita_acara' 	=> 'active',
+			'detail' 					=> $this->db->get_where('tb_berita_acara',['id_berita' => $this->uri->segment(2)])->row(), 
+			'data' 						=> $this->db->get_where('tb_barang',['berita_id' => $this->uri->segment(2)]),  
+			'file' 						=> $this->db->get_where('tb_file',['berita_id' => $this->uri->segment(2)]),  
+		);
+
+		// $this->load->view('layouts/header_new',$data);
+		$this->load->view('new/print',$data);
+		// $this->load->view('layouts/footer');
 	}
 
 	public function save_berita(){
@@ -60,19 +94,70 @@ class Berita_acara extends CI_Controller {
 
 	public function save_barang(){
 		$uri = $this->uri->segment(3);
-		$data = [
-			'kode_barang' 	=> $this->input->post('kode_barang',TRUE),
-			'nama_barang' 	=> $this->input->post('nama_barang',TRUE),
-			'nama_umum' 	=> $this->input->post('nama_umum',TRUE),
-			'spesifikasi' 	=> $this->input->post('spesifikasi',TRUE),
-			'jumlah' 	  	=> $this->input->post('jumlah',TRUE),
-			'harga' 		=> $this->input->post('harga',TRUE),
-			'ket' 			=> $this->input->post('ket',TRUE),
-			'berita_id' 	=> $uri,
-		];
+		$config['cacheable']    = true; 
+	    $config['cachedir']     = './src/'; 
+	    $config['errorlog']     = './src/'; 
+	    $config['imagedir']     = './src/img/qrcode/'; 
+	    $config['quality']      = true; 
+	    $config['size']         = '1024'; 
+	    $config['black']        = array(224,255,255); 
+	    $config['white']        = array(70,130,180); 
+	    $this->ciqrcode->initialize($config);
 
-		$this->db->insert('tb_barang',$data);
-		redirect($_SERVER['HTTP_REFERER']);
+	    $id = $this->uuid->v4();
+	    $image = str_replace('-', '', $id);
+		$id_as = $this->uuid->v4();
+	    $random_id = str_replace('-', '', $id_as);
+	    $image_name = $image.'.png'; 
+
+	    $url = base_url().'detail-barang/'.$random_id;
+
+	    $params['data'] = $url; 
+	    $params['level'] = 'H'; 
+	    $params['size'] = 10;
+	    $params['savename'] = FCPATH.$config['imagedir'].$image_name; 
+
+	    $this->ciqrcode->generate($params);
+
+		$config['upload_path'] = 'src/img/surat/'; 
+		$config['allowed_types'] = 'jpg|png|jpeg|pdf';  
+		$config['encrypt_name'] = TRUE;
+		$this->load->library('upload', $config); 
+		$this->upload->initialize($config); 
+
+		if ($this->upload->do_upload('name_file')){
+            $gbr = $this->upload->data();
+            //Compress Image
+            $config['image_library']='gd2';
+            $config['source_image']='src/img/surat/'.$gbr['file_name'];
+            $config['create_thumb']= FALSE;
+            $config['maintain_ratio']= FALSE;
+            $config['quality']= '60%';
+            $config['new_image']= 'src/img/surat/'.$gbr['file_name'];
+            $this->load->library('image_lib', $config);
+            $this->image_lib->resize();
+            $id = $this->uuid->v4();
+			// $random_id = str_replace('-', '', $id);
+			
+			$data = [
+				'id_barang'  	=> $random_id,
+				'kode_barang' 	=> $this->input->post('kode_barang',TRUE),
+				'nama_barang' 	=> $this->input->post('nama_barang',TRUE),
+				'nama_umum' 	=> $this->input->post('nama_umum',TRUE),
+				'spesifikasi' 	=> $this->input->post('spesifikasi',TRUE),
+				'jumlah' 	  	=> $this->input->post('jumlah',TRUE),
+				'harga' 		=> $this->input->post('harga',TRUE),
+				'ket' 			=> $this->input->post('ket',TRUE),
+				'foto' 			=> $gbr['file_name'],
+				'qrcode' 		=> $image_name,
+				'berita_id' 	=> $uri,
+			];
+	
+			$this->db->insert('tb_barang',$data);
+			$this->session->set_flashdata('sukses', 'Disimpan');
+			redirect($_SERVER['HTTP_REFERER']);
+			
+		}
 	}
 
 	public function update_berita($id_berita){
@@ -105,6 +190,24 @@ class Berita_acara extends CI_Controller {
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
+	public function hapus_barang($id_barang){
+		$uri = $this->uri->segment(3);
+		$data = $this->db->get_where('tb_barang',['id_barang' =>$uri])->row_array();
+
+		unlink('src/img/qrcode/'.$data['qrcode']);
+		unlink('src/img/surat/'.$data['foto']);
+		$this->db->delete('tb_barang',['id_barang' => $uri]);
+		$this->session->set_flashdata('sukses', 'Dihapus');
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+
+	public function hapus_file($id_barang){
+		$uri = $this->uri->segment(3);
+		$this->db->delete('tb_file',['id' => $uri]);
+		$this->session->set_flashdata('sukses', 'Dihapus');
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+
 	public function upload_config($path) {
 		if (!is_dir($path)) {
 			mkdir($path, 0777, TRUE);
@@ -128,15 +231,6 @@ class Berita_acara extends CI_Controller {
 				'error_message' => $this->upload->display_errors(),
 			];
 		} else {
-			
-			$lastCode = getLastCodeNrm();
-        if (empty($lastCode)) {
-            $nextCode = date('y').date('m').'0001';
-        } else {
-            $lastNumericPart = (int)substr($lastCode, 6);
-            $nextNumericPart = $lastNumericPart + 1;
-            $nextCode = date('y').date('m').str_pad($nextNumericPart, 4, '0', STR_PAD_LEFT);
-        }
 
 			$file_data 	= $this->upload->data();
 			$file_name 	= $path.$file_data['file_name'];
@@ -158,27 +252,15 @@ class Berita_acara extends CI_Controller {
 					if($result) {
 					} else {
 						$list [] = [
-							'nrm'				=> $nextCode,
-							'nama'				=> $val[0],
-							'nik'			  	=> $val[1],
-							'nopeg'				=> $val[2],
-							'tempat_lahir'		=> $val[3],
-							'tanggal_lahir'		=> $val[4],
-							'jenis_kelamin'		=> $val[5],
-							'id_provinsi'		=> provinsiId($val[6]),
-							'id_kabupaten'		=> kabupatenId($val[7]),
-							'id_kecamatan'		=> kecamatanId($val[8]),
-							'id_kelurahan'		=> kelurahanId($val[9]),
-							'status_pernikahan'	=> $val[10],
-							'jenis_pekerjaan'	=> jenis_pekerjaan($val[11]),
-							'perusahaan_id'		=> $this->input->post('perusahaan_id'),
-							'unit_id'			=> sess('unit_id'),
-							'lokasi_id'			=> $this->input->post('lokasi_id'),
+							'kode_barang'		=> $val[0],
+							'nama_barang'		=> $val[1],
+							'nama_umum'			=> $val[2],
+							'spesifikasi'		=> $val[3],
+							'jumlah'			=> $val[4],
+							'harga'				=> $val[5],
+							'ket'				=> $val[6],
+							'berita_id'			=> $this->uri->segment(3)
 						];
-
-						$nextNumericPart++;
-						// Update the next code with the incremented numeric portion
-						$nextCode = date('y').date('m').str_pad($nextNumericPart, 4, '0', STR_PAD_LEFT);
 					}
 				}
 			}
@@ -186,34 +268,78 @@ class Berita_acara extends CI_Controller {
 				unlink($file_name);
 			if(count($list) > 0) {
 				$this->db->trans_start();
-				$result 	= $this->my_model->insert_batch('m_pasien',$list);
+				$this->db->insert_batch('tb_barang',$list);
 				$this->db->trans_complete();
 
 				if ($this->db->trans_status() === FALSE) {
-					$json = [
-						'error_message' => "Import Data gagal. Silakan coba lagi."
-					];
+					$this->session->set_flashdata('gagal', 'Disimpan');
 				} else {
 					if ($result) {
-						$json = [
-							'success_message' => "All Entries are imported successfully.",
-						];
+						$this->session->set_flashdata('sukses', 'Disimpan');
 					} else {
-						$json = [
-							'error_message' => "Something went wrong. Please try again."
-						];
+						$this->session->set_flashdata('gagal', 'Disimpan');
 					}
 				}
 			} else {
-				$json = [
-					'error_message' => "No new record is found.",
-				];
+				$this->session->set_flashdata('gagal_store', 'No new record is found..');
 			}
 		}
-		echo json_encode($json);
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 
-}
+	function upload_file(){ 
+        $data = []; 
+        $errorUploadType = $statusMsg = ''; 
+         
+        // If file upload form submitted 
+        if($this->input->post('fileSubmit')){ 
+             
+            // If files are selected to upload 
+            if(!empty($_FILES['files']['name']) && count(array_filter($_FILES['files']['name'])) > 0){ 
+                $filesCount = count($_FILES['files']['name']); 
+                for($i = 0; $i < $filesCount; $i++){ 
+                    $_FILES['file']['name']     = $_FILES['files']['name'][$i]; 
+                    $_FILES['file']['type']     = $_FILES['files']['type'][$i]; 
+                    $_FILES['file']['tmp_name'] = $_FILES['files']['tmp_name'][$i]; 
+                    $_FILES['file']['error']    = $_FILES['files']['error'][$i]; 
+                    $_FILES['file']['size']     = $_FILES['files']['size'][$i]; 
+                     
+                    // File upload configuration 
+                    $uploadPath = 'src/file/'; 
+                    $config['upload_path'] = $uploadPath; 
+                    $config['allowed_types'] = 'jpg|jpeg|png|gif'; 
+                    //$config['max_size']    = '100'; 
+                    //$config['max_width'] = '1024'; 
+                    //$config['max_height'] = '768'; 
+                     
+                    // Load and initialize upload library 
+                    $this->load->library('upload', $config); 
+                    $this->upload->initialize($config); 
+                     
+                    if($this->upload->do_upload('file')){ 
+                        // Uploaded file data 
+                        $fileData = $this->upload->data(); 
+                        $uploadData[$i]['file_name'] = $fileData['file_name']; 
+                        $uploadData[$i]['berita_id'] = $this->input->post('berita_id'); 
+                    }else{  
+                        $errorUploadType .= $_FILES['file']['name'].' | ';  
+                    } 
+                } 
+                 
+                $errorUploadType = !empty($errorUploadType)?'<br/>File Type Error: '.trim($errorUploadType, ' | '):''; 
+                if(!empty($uploadData)){ 
+                    $insert = $this->db->insert_batch('tb_file',$uploadData); 
+                     
+					$this->session->set_flashdata('sukses', 'Disimpan');
+                    // echo $statusMsg = $insert?'Files uploaded successfully!'.$errorUploadType:'Some problem occurred, please try again.'; 
+                }else{ 
+					$this->session->set_flashdata('gagal', 'Disimpan'); 
+                } 
+            }else{
+				$this->session->set_flashdata('gagal_store', 'Please select image files to upload..');
+            } 
+        } 
+        redirect($_SERVER['HTTP_REFERER']);
+    } 
 
-/* End of file Statistik.php */
-/* Location: ./application/controllers/Statistik.php */
+}
