@@ -45,7 +45,7 @@
 
         ?>
         <!-- Notifications Dropdown Menu -->
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown" href="#">
             <i class="far fa-bell"></i>
             <span class="badge badge-warning navbar-badge"><?=$jml_pengadaan;?></span>
@@ -60,7 +60,7 @@
             <div class="dropdown-divider"></div>
             <a href="<?=base_url('pengadaan')?>" class="dropdown-item dropdown-footer">Lihat</a>
           </div>
-        </li>
+        </li> -->
 
       <?php } ?>
        <li class="nav-item dropdown user-menu">
@@ -110,7 +110,7 @@
     <a href="#" class="brand-link">
       <img src="<?=base_url()?>src/img/logo/AdminLTELogo.png" class="brand-image"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">Aset</span>
+      <span class="brand-text font-weight-light"><b>Aset Apps</b></span>
     </a>
 
     <!-- Sidebar -->
