@@ -136,7 +136,7 @@
                                         <a href="javascript:()" onclick="editBarang(<?= $row->id_barang?>)"
                                         data-toggle="modal" data-target="#modal-add-barang" class="btn btn-sm btn-success"><i class="fa fa-pencil-alt"></i></a>
                                         &nbsp;
-                                        <a href="javascript:()" onclick="handleHapus(<?= $row->id_barang?>)"
+                                        <a href="javascript:()" onclick="handleHapus('<?= $row->id_barang?>')"
                                             class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                                     </div>
                                 </td>
