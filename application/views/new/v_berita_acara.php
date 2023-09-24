@@ -1,4 +1,6 @@
 <link rel="stylesheet" href="<?=base_url()?>src/backend/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+<link rel="stylesheet" href="<?=base_url()?>src/backend/dropify/dropify.min.css">
+
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
@@ -45,13 +47,14 @@
               <tr>
                 <th>No.</th>
                 <th>No Berita Acara</th>
-                <th>Tanggal Peneriamaan</th>
+                <th>Tanggal Penerimaan</th>
                 <th>Diterima Dari</th>
                 <th>No Kontrak</th>
                 <th>No PPTK</th>
                 <th>Program</th>
                 <th>Kegitan</th>
                 <th>No Arsip</th>
+                <th>Jumlah Barang</th>
                 <th>Upload File</th>
                 <th>Aksi</th>
               </tr>
@@ -69,7 +72,16 @@
                     <td><?= $row->kegiatan?></td>
                     <td><?= $row->no_arsip?></td>
                     <td>
-                      <button class="btn btn-sm btn-warning"> <i class="fa fa-upload"></i></button>
+                      <button class="btn btn-sm btn-secondary"> 
+                        <i class="fa fa-briefcase"></i> &nbsp; 
+                        <span class="badge badge-light"><?= count_barang($row->id_berita)?></span>
+                      </button>
+                    </td>
+                    <td>
+                      <button class="btn btn-sm btn-warning" onclick="tombolUpload(<?=$row->id_berita?>)" data-toggle="modal" data-target="#modal-upload"> 
+                        <i class="fa fa-upload"></i> 
+                        <span class="badge badge-light"><?= count_file($row->id_berita)?></span>
+                      </button>
                     </td>
                     <td>
                       <a href="<?= base_url('berita_acara/detail/'.$row->id_berita)?>" class="btn btn-sm btn-success"> <i class="fa fa-eye"></i></a>
@@ -89,9 +101,12 @@
   </div>
 
   <?php $this->load->view('new/modal_berita_acara')?>
+  <?php $this->load->view('new/modal_upload_file')?>
+
 
   <script src="<?=base_url()?>src/backend/plugins/datatables/jquery.dataTables.js"></script>
   <script src="<?=base_url()?>src/backend/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+  <script src="<?=base_url()?>src/backend/dropify/dropify.min.js"></script>
   <script>
     $(function () {
       $("#example1").DataTable({
@@ -99,5 +114,18 @@
           "sSearch": "Cari"
         }
       });
+
+      $('.dropify').dropify();
+        // messages: {
+        //           default: 'Drag atau drop untuk memilih gambar',
+        //           replace: 'Ganti', 
+        //           remove:  'Hapus',
+        //           error:   'error'
+        //       }
+      // });
     });
+    function tombolUpload(id){
+        $('#berita_id').val(id);
+      }
+
   </script>
