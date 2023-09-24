@@ -39,6 +39,17 @@ class Welcome extends CI_Controller {
 		$this->load->view('inventory/qrcode',$data);
 	}
 
+	public function detail_barang()
+	{
+		$berita_id = $this->db->get_where('tb_barang',['id_barang' => $this->uri->segment(2)])->row()->berita_id;
+		$data = [
+			'item' => $this->db->get_where('tb_barang',['id_barang' => $this->uri->segment(2)])->row_array(),
+			'detail' => $this->db->get_where('tb_berita_acara',['id_berita' => $berita_id])->row_array()
+		];
+
+		$this->load->view('new/detail_barang',$data);
+	}
+
 	public function guest()
 	{
 		$data = array(
