@@ -231,30 +231,7 @@ class Berita_acara extends CI_Controller {
 				'error_message' => $this->upload->display_errors(),
 			];
 		} else {
-			$config['cacheable']    = true; 
-			$config['cachedir']     = './src/'; 
-			$config['errorlog']     = './src/'; 
-			$config['imagedir']     = './src/img/qrcode/'; 
-			$config['quality']      = true; 
-			$config['size']         = '1024'; 
-			$config['black']        = array(224,255,255); 
-			$config['white']        = array(70,130,180); 
-			$this->ciqrcode->initialize($config);
-
-			$id = $this->uuid->v4();
-			$image = str_replace('-', '', $id);
-			$id_as = $this->uuid->v4();
-			$random_id = str_replace('-', '', $id_as);
-			$image_name = $image.'.png'; 
-
-			$url = base_url().'detail-barang/'.$random_id;
-
-			$params['data'] = $url; 
-			$params['level'] = 'H'; 
-			$params['size'] = 10;
-			$params['savename'] = FCPATH.$config['imagedir'].$image_name; 
-
-			$this->ciqrcode->generate($params);
+			
 			$file_data 	= $this->upload->data();
 			$file_name 	= $path.$file_data['file_name'];
 			$arr_file 	= explode('.', $file_name);
@@ -274,6 +251,30 @@ class Berita_acara extends CI_Controller {
 					$result 	= '';
 					if($result) {
 					} else {
+						$config['cacheable']    = true; 
+						$config['cachedir']     = './src/'; 
+						$config['errorlog']     = './src/'; 
+						$config['imagedir']     = './src/img/qrcode/'; 
+						$config['quality']      = true; 
+						$config['size']         = '1024'; 
+						$config['black']        = array(224,255,255); 
+						$config['white']        = array(70,130,180); 
+						$this->ciqrcode->initialize($config);
+
+						$id = $this->uuid->v4();
+						$image = str_replace('-', '', $id);
+						$id_as = $this->uuid->v4();
+						$random_id = str_replace('-', '', $id_as);
+						$image_name = $image.'.png'; 
+
+						$url = base_url().'detail-barang/'.$random_id;
+
+						$params['data'] = $url; 
+						$params['level'] = 'H'; 
+						$params['size'] = 10;
+						$params['savename'] = FCPATH.$config['imagedir'].$image_name; 
+
+						$this->ciqrcode->generate($params);
 						$list [] = [
 							'id_barang'			=> $random_id,
 							'kode_barang'		=> $val[0],
