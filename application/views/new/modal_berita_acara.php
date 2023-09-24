@@ -16,7 +16,7 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="tgl_penerimaan" class="col-sm-4 col-form-label">Tanggal Peneriamaan</label>
+                    <label for="tgl_penerimaan" class="col-sm-4 col-form-label">Tanggal Penerimaan</label>
                     <div class="col-sm-8">
                       <input type="date" class="form-control" name="tgl_penerimaan" placeholder=".." required>
                     </div>
