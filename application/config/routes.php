@@ -22,10 +22,16 @@ $route['guest/(:any)'] = 'Welcome/detail_inventory/(:any)';
 $route['home'] = 'Home/index';
 $route['dashboard'] = 'Dashboard/index';
 $route['berita_acara'] = 'Berita_acara/index';
+$route['berita_acara/upload_file'] = 'Berita_acara/upload_file';
+$route['berita_acara/upload/(:any)'] = 'Berita_acara/upload';
 $route['berita_acara/saveberita'] = 'Berita_acara/save_berita';
 $route['berita_acara/savebarang/(:any)'] = 'Berita_acara/save_barang/(:any)';
+$route['detail-barang/(:any)'] = 'Berita_acara/detail_barang/(:any)';
+$route['detail-print/(:any)'] = 'Berita_acara/print/(:any)';
 $route['berita_acara/updateberita'] = 'Berita_acara/update_berita';
 $route['berita_acara/updatebarang'] = 'Berita_acara/update_barang';
+$route['berita_acara/hapusbarang/(:any)'] = 'Berita_acara/hapus_barang/(:any)';
+$route['berita_acara/hapusfile/(:any)'] = 'Berita_acara/hapus_file/(:any)';
 $route['berita_acara/edit/(:any)'] = 'Berita_acara/edit/(:any)';
 $route['berita_acara/detail/(:any)'] = 'Berita_acara/detail/(:any)';
 
