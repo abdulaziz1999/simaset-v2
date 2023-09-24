@@ -7,7 +7,7 @@
                     <span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                  <form class="form-horizontal" action="<?=base_url('berita_acara/savebarang/'.$this->uri->segment(3))?>" autocomplete="off" method="post">
+                  <form class="form-horizontal" action="<?=base_url('berita_acara/savebarang/'.$this->uri->segment(3))?>" autocomplete="off" method="post" enctype="multipart/form-data">
                     <div class="card-body" style="background-color:#DCDCDC; border-radius:5px">
                       <div class="form-group row">
                         <label for="kode_barang" class="col-sm-2 col-form-label">Kode Barang</label>
@@ -49,6 +49,12 @@
                         <label for="ket" class="col-sm-2 col-form-label">Keterangan</label>
                         <div class="col-sm-10">
                           <input type="text" class="form-control" name="ket" placeholder="Masukan Keterangan.." required>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="nama_file" class="col-sm-2 col-form-label">Foto Barang</label>
+                        <div class="col-sm-10">
+                          <input type="file" class="form-control" name="name_file" placeholder="Masukan Keterangan.." required>
                         </div>
                       </div>
                     </div>
