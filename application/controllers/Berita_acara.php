@@ -275,7 +275,7 @@ class Berita_acara extends CI_Controller {
 					if($result) {
 					} else {
 						$list [] = [
-							'id_barang'			=> $$random_id,
+							'id_barang'			=> $random_id,
 							'kode_barang'		=> $val[0],
 							'nama_barang'		=> $val[1],
 							'nama_umum'			=> $val[2],
