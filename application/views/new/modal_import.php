@@ -6,6 +6,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
             </div>
+            <form method="post" action="<?= base_url('berita_acara/upload/'.$this->uri->segment(3))?>" enctype="multipart/form-data" >
             <div class="modal-body">
                 <div class="form-group">
                   <div class="form-group">
@@ -14,13 +15,14 @@
                 </div>
                 <div class="form-group">
                   <label for="file">Upload File</label>
-                  <input type="file" class="form-control" id="file-mpasien" name="file">
+                  <input type="file" class="form-control" id="file-upload" name="file">
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-sm btn-danger pull-left" data-dismiss="modal"> <i class="fa fa-times"></i> Close</button>
-                <button type="button" class="btn btn-sm btn-success"><i class="fa fa-upload"></i> Import</button>
+                <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-upload"></i> Import</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
