@@ -42,6 +42,10 @@
                           data-toggle="modal" data-target="#modal-import">
                           <i class="fa fa-file-excel"></i> Import Data
                       </a>
+                      &nbsp;
+                      <a href="<?= base_url('detail-print/'.$this->uri->segment(3))?>" target="_blank" class="btn btn-sm bg-gradient-danger">
+                          <i class="fa fa-file-pdf"></i> Print Data
+                      </a>
                   </div>
                 </div>
             </div>
@@ -120,12 +124,21 @@
                                 <td><?= $row->jumlah?></td>
                                 <td><?= $row->harga?></td>
                                 <td><?= $row->ket?></td>
-                                <td><?= $row->qrcode?></td>
                                 <td>
-                                    <a href="<?= base_url('berita_acara/edit_b/'.$row->id_barang)?>"
-                                        class="btn btn-sm btn-success"><i class="fa fa-pencil-alt"></i></a>
-                                    <a href="<?= base_url('berita_acara/hapus_b/'.$row->id_barang)?>"
-                                        class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                    <?php if($row->qrcode){?>
+                                    <img src="<?= base_url('src/img/qrcode/'.$row->qrcode)?>"  class="img-thumbnail rounded" width="200" height="200">
+                                    <?php }else{?>
+                                    -
+                                    <?php }?>
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a href="javascript:()" onclick="editBarang(<?= $row->id_barang?>)"
+                                        data-toggle="modal" data-target="#modal-add-barang" class="btn btn-sm btn-success"><i class="fa fa-pencil-alt"></i></a>
+                                        &nbsp;
+                                        <a href="javascript:()" onclick="handleHapus(<?= $row->id_barang?>)"
+                                            class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                    </div>
                                 </td>
                             </tr>
                             <?php endforeach ?>
@@ -135,7 +148,15 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-
+                <h4><b>Lampiran :</b></h4>
+                <div class="row">
+                    <?php foreach($file->result() as $row):?>
+                    <div class="col-md-4 mt-3">
+                        <img src="<?= base_url('src/file/'.$row->file_name)?>" class="img-thumbnail rounded" alt="...">
+                        <a href="javascript:()" onclick="handleHapusBarang(<?= $row->id?>)"class="btn btn-sm btn-danger mt-2"><i class="fa fa-trash"></i></a>
+                    </div>
+                    <?php endforeach;?>
+                </div>
             </div>
             <!-- /.card-footer-->
         </div>
@@ -158,4 +179,27 @@ $(function() {
         }
     });
 });
+
+const handleHapus = (id) => {
+        var konfirm = confirm('Apakah Anda Ingin Menghapus Data !');
+        if (konfirm) {
+            window.location.href = "<?= base_url('berita_acara/hapusbarang/')?>" + id;
+        }
+    }
+
+const handleHapusBarang = (id) => {
+        var konfirm = confirm('Apakah Anda Ingin Menghapus Data !');
+        if (konfirm) {
+            window.location.href = "<?= base_url('berita_acara/hapusfile/')?>" + id;
+        }
+    }
+
+const editBarang = (id) => {
+    $('.modal-title').text('Edit Barang');
+    $.ajax({
+        url: '' + id,
+        type: 'POST',
+        
+    })
+}
 </script>
