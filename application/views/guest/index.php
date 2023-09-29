@@ -5,12 +5,12 @@
       <div class="container">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark"> Data Inventory</h1>
+            <h1 class="m-0 text-dark"> Data Aset</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Data Inventory</li>
+              <li class="breadcrumb-item active">Data Aset</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -31,9 +31,9 @@
                             <th>No.</th>
                             <th>Kode Barang</th>
                             <th>Nama Barang</th>
-                            <th>Lokasi</th>
-                            <th>Tahun Anggaran</th>
-                            <th>PPTK Pengadaan</th>
+                            <th>Tanggal Penerimaan</th>
+                            <th>Di Terima Dari</th>
+                            <th>No PPTK</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>

@@ -12,51 +12,53 @@
                       <div class="form-group row">
                         <label for="kode_barang" class="col-sm-2 col-form-label">Kode Barang</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" name="kode_barang" placeholder="Masukan Kode Barang.." required>
+                          <input type="text" class="form-control" id="kode_barang" name="kode_barang" placeholder="Masukan Kode Barang.." required>
+                          <input type="hidden" name="id_barang" id="id_barang">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="nama_barang" class="col-sm-2 col-form-label">Nama Barang</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" name="nama_barang" placeholder="Masukan Nama Barang.." required>
+                          <input type="text" class="form-control" id="nama_barang" name="nama_barang" placeholder="Masukan Nama Barang.." required>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="nama_umum" class="col-sm-2 col-form-label">Nama Umum</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" name="nama_umum" placeholder="Masukan Nama Umum.." required>
+                          <input type="text" class="form-control" id="nama_umum" name="nama_umum" placeholder="Masukan Nama Umum.." required>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="spesifikasi" class="col-sm-2 col-form-label">Spesifikasi</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" name="spesifikasi" placeholder="Masukan Spesifikasi.." required>
+                          <input type="text" class="form-control" id="spesifikasi" name="spesifikasi" placeholder="Masukan Spesifikasi.." required>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="jumlah" class="col-sm-2 col-form-label">Jumlah</label>
                         <div class="col-sm-10">
-                          <input type="number" class="form-control" name="jumlah" placeholder="Masukan Jumlah.." required>
+                          <input type="number" class="form-control" id="jumlah" name="jumlah" placeholder="Masukan Jumlah.." required>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="harga" class="col-sm-2 col-form-label">Harga</label>
                         <div class="col-sm-10">
-                          <input type="number" class="form-control" name="harga" placeholder="Masukan Harga.." required>
+                          <input type="number" class="form-control" id="harga" name="harga" placeholder="Masukan Harga.." required>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="ket" class="col-sm-2 col-form-label">Keterangan</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" name="ket" placeholder="Masukan Keterangan.." required>
+                          <input type="text" class="form-control" id="ket" name="ket" placeholder="Masukan Keterangan.." required>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="nama_file" class="col-sm-2 col-form-label">Foto Barang</label>
                         <div class="col-sm-10">
-                          <input type="file" class="form-control" name="name_file" placeholder="Masukan Keterangan.." required>
+                          <input type="file" id="edit-gambar-input" class="form-control" name="name_file" placeholder="Masukan Keterangan.." required>
                         </div>
                       </div>
+                      <img id="edit-gambar" class="img-thumbnail" style="border-radius:10px;" src="<?= base_url('src/img/logo/placeholder.png')?>" alt="Belum Ada Gambar Barang" width="300" height="200">
                     </div>
                   
             </div>

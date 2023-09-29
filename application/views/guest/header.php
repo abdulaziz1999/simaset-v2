@@ -25,7 +25,7 @@
       <a href="#" class="navbar-brand">
         <img src="<?=base_url()?>src/backend/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle"
              style="opacity: .8">
-        <span class="brand-text font-weight-light">Inventory</span>
+        <span class="brand-text font-weight-light">ASET</span>
       </a>
       
       <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,7 +39,7 @@
             <a href="<?=base_url('/');?>" class="nav-link">Home</a>
           </li>
           <li class="nav-item">
-            <a href="<?=base_url('guest');?>" class="nav-link">Data Inventory</a>
+            <a href="<?=base_url('guest');?>" class="nav-link">Data Aset</a>
           </li>
         </ul>
 

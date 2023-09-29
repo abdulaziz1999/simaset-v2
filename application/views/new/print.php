@@ -12,34 +12,27 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <!-- Main content -->
+    <!-- <style>
+    .wrap-text {
+        max-width: 200px; /* Sesuaikan dengan lebar maksimum yang Anda inginkan */
+        word-wrap: break-word; /* Mengaktifkan word wrap */
+    }
+</style> -->
+<body style="overflow-x: hidden;">
     <section class="content" id="content-to-print">
         <!-- Default box -->
         <div class="card">
-            <!-- <div class="card-header">
-                <h3 class="card-title">
-                        <a href="<?=base_url('berita_acara')?>"
-                            class="btn btn-sm bg-gradient-danger">
-                            <i class="fa fa-arrow-left"></i> Kembali
-                        </a>
-                </h3>
-
-                <div class="card-tools">
-                  <div class="btn-group">
-                      <a href="#" class="btn btn-sm bg-gradient-primary"
-                          data-toggle="modal" data-target="#modal-add-barang">
-                          <i class="fa fa-plus"></i> Tambah Data
-                      </a>
-                      &nbsp;
-                      <a href="#" class="btn btn-sm bg-gradient-success"
-                          data-toggle="modal" data-target="#modal-import">
-                          <i class="fa fa-file-excel"></i> Import Data
-                      </a>
-                  </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-right mr-4">
+                        <div><b><?=$detail->no_arsip?></b></div>
+                    </div>
                 </div>
-            </div> -->
+            </div>
+
             <div class="card-body">
                 <h4 class="text-center mb-5">
-                    <strong>
+                    <strong class="wrap-text">
                         PEMERINTAH DAERAH TANGERANG SELATAN
                         <br>DINAS LINGKUNGAN HIDUP <br>
                         BERITA ACARA SERAH TERIMA PEMBELIAN LAINNYA
@@ -80,7 +73,7 @@
                             <tr>
                                 <td>Kegiatan</td>
                                 <td>:</td>
-                                <td>&nbsp;<?= $detail->program?></td>
+                                <td>&nbsp;<?= $detail->kegiatan?></td>
                             </tr>
                         </table>
                     </div>
@@ -88,7 +81,7 @@
                 <div class="table-responsive">
                     <table id="example1" class="table table-bordered table-striped table-sm">
                         <thead>
-                            <tr class="bg-secondary">
+                            <tr>
                                 <th>No.</th>
                                 <th>Kode Barang</th>
                                 <th>Nama Barang</th>
@@ -109,7 +102,7 @@
                                 <td><?= $row->nama_umum?></td>
                                 <td><?= $row->spesifikasi?></td>
                                 <td><?= $row->jumlah?></td>
-                                <td><?= $row->harga?></td>
+                                <td><?= format_currency($row->harga)?></td>
                                 <td><?= $row->ket?></td>
                                 <!-- <td>
                                     <?php if($row->qrcode){?>
@@ -184,3 +177,5 @@
 // });
 
 </script>
+
+</body>

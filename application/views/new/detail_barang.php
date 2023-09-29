@@ -40,7 +40,11 @@
               <tbody> 
                   <tr>
                     <td colspan="3" class="text-center">
-                      <img class="img-thumbnail" src="<?= base_url('src/img/surat/'.$item['foto'])?>" alt="" srcset="">
+                      <?php if($item['foto']):?>
+                      <img class="img-thumbnail" style="border-radius:50px;" src="<?= base_url('src/img/surat/'.$item['foto'])?>" alt="" srcset="">
+                      <?php else:?>
+                      <img class="img-thumbnail" style="border-radius:50px;" width="500" height="500" src="<?= base_url('src/img/logo/placeholder.png')?>" alt="" srcset="">
+                      <?php endif;?>
                     </td>
                   </tr>               
                   <tr>                    
@@ -57,16 +61,6 @@
                       <td width="200px">TANGGAL PENERIMAAN</td>
                       <td width="50px">:</td>
                       <td><?=tgl_indo($detail['tgl_penerimaan']) ?></td>
-                  </tr>
-                  <tr>
-                      <td width="100px">DI TERIMA DARI</td>
-                      <td width="50px">:</td>
-                      <td><?= $detail['diterima_dari'] ?></td>
-                  </tr>
-                  <tr>
-                      <td width="100px">PPTK PENGADAAN</td>
-                      <td width="50px">:</td>
-                      <td><?=$detail['no_pptk'] ?></td>
                   </tr>
                   <tr>
                     <td colspan="6">

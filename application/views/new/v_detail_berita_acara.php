@@ -92,7 +92,7 @@
                             <tr>
                                 <td>Kegiatan</td>
                                 <td>:</td>
-                                <td>&nbsp;<?= $detail->program?></td>
+                                <td>&nbsp;<?= $detail->kegiatan?></td>
                             </tr>
                         </table>
                     </div>
@@ -122,7 +122,7 @@
                                 <td><?= $row->nama_umum?></td>
                                 <td><?= $row->spesifikasi?></td>
                                 <td><?= $row->jumlah?></td>
-                                <td><?= $row->harga?></td>
+                                <td><?= format_currency($row->harga)?></td>
                                 <td><?= $row->ket?></td>
                                 <td>
                                     <?php if($row->qrcode){?>
@@ -133,7 +133,11 @@
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="javascript:()" onclick="editBarang(<?= $row->id_barang?>)"
+                                        <button class="btn btn-sm btn-warning" onclick="tombolUpload('<?=$row->id_barang?>')" data-toggle="modal" data-target="#modal-upload"> 
+                                            <i class="fa fa-upload"></i> 
+                                        </button>
+                                        &nbsp;
+                                        <a href="javascript:()" onclick="editBarang('<?= $row->id_barang?>')"
                                         data-toggle="modal" data-target="#modal-add-barang" class="btn btn-sm btn-success"><i class="fa fa-pencil-alt"></i></a>
                                         &nbsp;
                                         <a href="javascript:()" onclick="handleHapus('<?= $row->id_barang?>')"
@@ -168,10 +172,12 @@
 
 <?php $this->load->view('new/modal_import')?>
 <?php $this->load->view('new/modal_barang')?>
+<?php $this->load->view('new/modal_upload_foto_barang')?>
 
 <script src="<?=base_url()?>src/backend/plugins/datatables/jquery.dataTables.js"></script>
 <script src="<?=base_url()?>src/backend/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 <script>
+var baseUrl = '<?=base_url()?>';
 $(function() {
     $("#example1").DataTable({
         "language": {
@@ -179,6 +185,46 @@ $(function() {
         }
     });
 });
+
+$('#edit-gambar-input').change(function() {
+    var fileInput = $(this)[0];
+    if (fileInput.files && fileInput.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('#edit-gambar').attr('src', e.target.result);
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+    }
+});
+
+$('#edit-gambar-input2').change(function() {
+    var fileInput = $(this)[0];
+    if (fileInput.files && fileInput.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('#edit-gambar2').attr('src', e.target.result);
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+    }
+});
+
+const tombolUpload = (id) => {
+        $('#id_barang').val(id);
+        $.ajax({
+            url: baseUrl + 'berita_acara/getDetailBarang',
+            type: 'POST',
+            data: {id:id},
+            dataType: 'json',
+            success: function(data){
+                if(data.foto){
+                    var urlFoto = baseUrl + 'src/img/surat/' + data.foto;
+                    $('#edit-gambar2').attr('src', urlFoto);
+                }else{
+                    $('#edit-gambar2').attr('src', '<?= base_url('src/img/logo/placeholder.png')?>');
+                }
+            }
+        })
+}
 
 const handleHapus = (id) => {
         var konfirm = confirm('Apakah Anda Ingin Menghapus Data !');
@@ -195,11 +241,27 @@ const handleHapusBarang = (id) => {
     }
 
 const editBarang = (id) => {
+    $('.modal-title').css('font-weight', 'bold');
     $('.modal-title').text('Edit Barang');
     $.ajax({
-        url: '' + id,
+        url: baseUrl + 'berita_acara/getDetailBarang',
+        data: {id: id},
         type: 'POST',
-        
+        dataType: 'json',
+        success: function (data) {
+            $('#id_barang').val(data.id_barang);
+            $('#kode_barang').val(data.kode_barang);
+            $('#nama_barang').val(data.nama_barang);
+            $('#nama_umum').val(data.nama_umum);
+            $('#spesifikasi').val(data.spesifikasi);
+            $('#jumlah').val(data.jumlah);
+            $('#harga').val(data.harga);
+            $('#ket').val(data.ket);
+            // $('#edit-gambar-input').val(data.foto);
+            $('#edit-gambar-input').removeAttr('required');
+            var urlFoto = baseUrl + 'src/img/surat/' + data.foto;
+            $('#edit-gambar').attr('src', urlFoto);
+        }
     })
 }
 </script>

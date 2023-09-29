@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 function tgl_indo($tanggal){
 	$bulan = array (
-		1 =>   'Januari',
+		'Januari',
 		'Februari',
 		'Maret',
 		'April',
@@ -69,6 +69,68 @@ function count_content($where)
 		return '-';
 	} else {
 		return $val;
+	}
+}
+
+if (!function_exists('format_date_for_mysql')) {
+    function format_date_for_mysql($date_str) {
+        // Pisahkan tanggal dan bulan
+        list($day, $month, $year) = explode(' ', $date_str);
+
+        // Array untuk mapping nama bulan dalam bahasa Indonesia ke bahasa Inggris
+        $indonesian_months = array(
+            'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+            'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+        );
+
+        // Array untuk mapping nama bulan dalam bahasa Inggris ke bahasa Indonesia
+        $english_months = array(
+            'January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'
+        );
+
+        // Cari index bulan dalam bahasa Indonesia
+        $indonesian_month_index = array_search($month, $indonesian_months);
+        
+        if ($indonesian_month_index !== false) {
+            // Jika nama bulan dalam bahasa Indonesia ditemukan
+            // Ganti dengan nama bulan dalam bahasa Inggris
+            $month = $english_months[$indonesian_month_index];
+        }
+
+        // Gabungkan kembali tanggal, bulan, dan tahun
+        $formatted_date = "$day $month $year";
+
+        // Convert the date string to a DateTime object with a specific format
+        $formatted_date = DateTime::createFromFormat('d F Y', $formatted_date);
+
+        if ($formatted_date === false) {
+            // Penanganan kesalahan jika gagal mengurai tanggal
+            return false;
+        }
+
+        // Format the date in the MySQL-compatible format (Y-m-d)
+        return $formatted_date->format('Y-m-d');
+    }
+}
+
+if (!function_exists('clean_currency')) {
+	function clean_currency($currency_str) {
+		// Hapus tanda ","
+		$cleaned_str = str_replace(',', '', $currency_str);
+		
+		// Hapus ".00" jika ada
+		$cleaned_str = str_replace('.00', '', $cleaned_str);
+		
+		return $cleaned_str;
+	}
+}
+
+
+if (!function_exists('format_currency')) {
+	function format_currency($amount) {
+		// Menggunakan number_format untuk menambahkan tanda koma dan dua angka desimal
+		return number_format($amount, 2, '.', ',');
 	}
 }
 

@@ -111,7 +111,7 @@ class Inventory extends CI_Controller {
 					'qr_code' => $image_name
 				);
 
-				$this->m-> addData('inventory', $data);
+				$this->m->addData('inventory', $data);
 
 				$this->session->set_flashdata('sukses', 'Disimpan');
 				redirect('inventory');
@@ -152,7 +152,7 @@ class Inventory extends CI_Controller {
 					'name_file' => $gbr['file_name'],
 				);
 
-				$this->m-> addData('inventory', $data);
+				$this->m->addData('inventory', $data);
 
 				$this->session->set_flashdata('sukses', 'Disimpan');
 				redirect('inventory');

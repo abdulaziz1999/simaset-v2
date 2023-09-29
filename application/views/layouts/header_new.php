@@ -132,6 +132,18 @@
           </a>
         </li>
         <li class="nav-item has-treeview">
+          <a href="<?=base_url('qr_code')?>" class="nav-link <?=isset($active_menu_qrcode)?$active_menu_qrcode:'' ?>">
+            <i class="nav-icon fas fa-qrcode"></i>
+            <p>Print QRcode</p>
+          </a>
+        </li>
+        <li class="nav-item has-treeview">
+          <a href="<?=base_url('print_berita')?>" class="nav-link <?=isset($active_print_berita)?$active_print_berita:'' ?>">
+            <i class="nav-icon fas fa-print"></i>
+            <p>Print Berita Acara</p>
+          </a>
+        </li>
+        <li class="nav-item has-treeview">
           <a href="<?=base_url('users')?>" class="nav-link <?=isset($active_menu_user)?$active_menu_user:'' ?>">
             <i class="nav-icon fa fa-users"></i>
             <p>Pengguna</p>

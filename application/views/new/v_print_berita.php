@@ -28,16 +28,9 @@
     <div class="card card-primary card-outline">
       <div class="card-header">
         <h3 class="card-title">
-          <div class="btn-group">
-            <a href="#" class="btn btn-sm bg-gradient-primary" data-toggle="modal" data-target="#modal-add-barang">
-              <i class="fa fa-plus"></i> Tambah Data
-            </a>
-            &nbsp;
-            <a href="#" class="btn btn-sm bg-gradient-success"
-              data-toggle="modal" data-target="#modal-import">
-              <i class="fa fa-file-excel"></i> Import Data
-            </a>
-          </div>
+          <a href="#" class="btn btn-sm bg-gradient-primary" data-toggle="modal" data-target="#modal-add-barang">
+            <i class="fa fa-plus"></i> Tambah Data
+          </a>
         </h3>
 
         <div class="card-tools">
@@ -109,7 +102,6 @@
 
   <?php $this->load->view('new/modal_berita_acara')?>
   <?php $this->load->view('new/modal_upload_file')?>
-  <?php $this->load->view('new/modal_import_excel')?>
 
 
   <script src="<?=base_url()?>src/backend/plugins/datatables/jquery.dataTables.js"></script>

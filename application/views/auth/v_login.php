@@ -28,11 +28,11 @@
 
 <div class="login-box">
   <div class="login-logo">
-    <a href=""><b>INVENTORY</b></a>
+    <a href=""><b>Aset Apps</b></a>
   </div>
   <!-- /.login-logo -->
-  <div class="card">
-    <div class="card-body login-card-body">
+  <div class="card" style="border-radius:5px;">
+    <div class="card-body login-card-body rounded">
 
       <?php if ($this->session->flashdata('gagal_login')) { ?>
         <div class="alert alert-danger"> 
@@ -81,10 +81,10 @@
         </div>
       </form>
       <div class="social-auth-links text-center mb-3">
-        <p>- OR -</p>
+        <!-- <p>- OR -</p>
         <a href="<?=base_url('guest');?>" class="btn btn-block btn-danger">
           <i class="fa fa-user mr-2"></i> Masuk sebagai Tamu
-        </a>
+        </a> -->
       </div>
     </div>
     <!-- /.login-card-body -->
