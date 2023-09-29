@@ -7,12 +7,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Berita Acara</h1>
+          <h1>Print QR Code</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="<?=base_url('dashboard')?>">Dashboard</a></li>
-            <li class="breadcrumb-item active">Berita Acara</li>
+            <li class="breadcrumb-item active">Print QR Code</li>
           </ol>
         </div>
       </div>
@@ -27,10 +27,11 @@
     <!-- Default box -->
     <div class="card card-primary card-outline">
       <div class="card-header">
+        <marquee behavior="" direction="">Coming Soon !!</marquee>
         <h3 class="card-title">
-          <a href="#" class="btn btn-sm bg-gradient-primary" data-toggle="modal" data-target="#modal-add-barang">
+          <!-- <a href="#" class="btn btn-sm bg-gradient-primary" data-toggle="modal" data-target="#modal-add-barang">
             <i class="fa fa-plus"></i> Tambah Data
-          </a>
+          </a> -->
         </h3>
 
         <div class="card-tools">
@@ -42,7 +43,7 @@
           </div>
           <div class="card-body"> 
           <div class="table-responsive">
-          <table id="example1" class="table table-bordered table-striped table-sm">
+          <!-- <table id="example1" class="table table-bordered table-striped table-sm">
             <thead>
               <tr>
                 <th>No.</th>
@@ -89,7 +90,7 @@
                 </tr>
               <?php endforeach ?>
             </tbody>
-          </table>
+          </table> -->
           </div>           
         </div>
         <div class="card-footer">
