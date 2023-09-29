@@ -15,7 +15,7 @@
                     <label for="file">Upload File</label>
                     <input type="file" class="form-control" id="edit-gambar-input2" name="name_file" required/>
                     <input type="hidden" name="fileSubmit" value="upload">
-                    <input type="hidden" name="id_barang" id="id_barang" >
+                    <input type="hidden" name="id_barang" id="id_barang_upload" >
                   </div>
                   <div class="form-group text-center">
                     <img id="edit-gambar2" class="img-thumbnail" style="border-radius:10px;" src="<?= base_url('src/img/logo/placeholder.png')?>" alt="Gambar Barang" width="300" height="200">

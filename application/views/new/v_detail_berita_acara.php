@@ -208,8 +208,8 @@ $('#edit-gambar-input2').change(function() {
     }
 });
 
-const tombolUpload = (id) => {
-        $('#id_barang').val(id);
+const tombolUpload = (id) => { 
+        $('#id_barang_upload').val(id);
         $.ajax({
             url: baseUrl + 'berita_acara/getDetailBarang',
             type: 'POST',

@@ -79,41 +79,43 @@ class Berita_acara extends CI_Controller {
 
 	//UPLOAD FOTO BARANG
 	function upload_foto_barang(){
-		$id_barang = $this->input->post('id_barang',TRUE);
-		$config['upload_path'] = 'src/img/surat/'; 
-		$config['allowed_types'] = 'jpg|png|jpeg|pdf';  
-		$config['encrypt_name'] = TRUE;
-		$this->load->library('upload', $config); 
-		$this->upload->initialize($config); 
-		$barang_lama = $this->db->get_where('tb_barang', ['id_barang' => $id_barang])->row();
+		$id_barang = $this->input->post('id_barang');
 		
-		// Hapus gambar lama dari direktori jika ada
-		if (!empty($barang_lama->foto)) {
-			$path_to_file = 'src/img/surat/' . $barang_lama->foto;
-			if (file_exists($path_to_file)) {
-				unlink($path_to_file);
+		if (!empty($_FILES['name_file']['name'])) {
+			$barang_lama = $this->db->get_where('tb_barang', ['id_barang' => $id_barang])->row();
+			// Hapus gambar lama dari direktori jika ada
+			if (!empty($barang_lama->foto)) {
+				$path_to_file = 'src/img/surat/' . $barang_lama->foto;
+				if (file_exists($path_to_file)) {
+					unlink($path_to_file);
+				}
 			}
-		}
-		if ($this->upload->do_upload('name_file')){
-            $gbr = $this->upload->data();
-            //Compress Image
-            $config['image_library']	='gd2';
-            $config['source_image']		='src/img/surat/'.$gbr['file_name'];
-            $config['create_thumb']		= FALSE;
-            $config['maintain_ratio']	= FALSE;
-            $config['quality']			= '60%';
-            $config['new_image']		= 'src/img/surat/'.$gbr['file_name'];
-            $this->load->library('image_lib', $config);
-            $this->image_lib->resize();
-			
-			$data = [
-				'foto' 			=> $gbr['file_name'],
-			];
-	
-			$this->db->update('tb_barang',$data,['id_barang' => $this->input->post('id_barang',TRUE)]);
-			$this->session->set_flashdata('sukses', 'Disimpan');
-			redirect($_SERVER['HTTP_REFERER']);
-			
+			$config['upload_path'] = 'src/img/surat/'; 
+			$config['allowed_types'] = 'jpg|png|jpeg|pdf';  
+			$config['encrypt_name'] = TRUE;
+			$this->load->library('upload', $config); 
+			$this->upload->initialize($config); 
+
+			if ($this->upload->do_upload('name_file')){
+				$gbr = $this->upload->data();
+				//Compress Image
+				$config['image_library']	='gd2';
+				$config['source_image']		='src/img/surat/'.$gbr['file_name'];
+				$config['create_thumb']		= FALSE;
+				$config['maintain_ratio']	= FALSE;
+				$config['quality']			= '60%';
+				$config['new_image']		= 'src/img/surat/'.$gbr['file_name'];
+				$this->load->library('image_lib', $config);
+				$this->image_lib->resize();
+				
+				$data = [
+					'foto' 			=> $gbr['file_name'],
+				];
+				$this->db->update('tb_barang',$data,['id_barang' => $id_barang]);
+				$this->session->set_flashdata('sukses', 'Disimpan');
+				redirect($_SERVER['HTTP_REFERER']);
+				
+			}
 		}
 	}
 
