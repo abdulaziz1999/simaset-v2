@@ -20,10 +20,23 @@ $route['guest/(:any)'] = 'Welcome/detail_inventory/(:any)';
 
 //Dashboard
 $route['home']                              = 'Home/index';
+
+//Dashboard new
 $route['dashboard']                         = 'Dashboard/index';
-$route['berita_acara']                      = 'Berita_acara/index';
+
+//Cetal Print
 $route['qr_code']                           = 'Qr_code/index';
+$route['qr_code/pQrcode/(:any)']            = 'Qr_code/pQrcode';
 $route['print_berita']                      = 'Print_berita/index';
+$route['print_berita/pBeritaAcara/(:any)']  = 'Print_berita/pBeritaAcara';
+
+//Judul Berita Acara
+$route['judul_berita']                      = 'Judul_berita/index';
+$route['judul_berita/update']               = 'Judul_berita/update';
+$route['judul_berita/detailJudul']          = 'Judul_berita/getDetailJudul';
+
+//Berita Acara dan Barang
+$route['berita_acara']                      = 'Berita_acara/index';
 $route['berita_acara/import']               = 'Berita_acara/import';
 $route['berita_acara/upload_file']          = 'Berita_acara/upload_file';
 $route['berita_acara/upload/(:any)']        = 'Berita_acara/upload';
@@ -31,7 +44,6 @@ $route['berita_acara/saveberita']           = 'Berita_acara/save_berita';
 $route['berita_acara/savebarang/(:any)']    = 'Berita_acara/save_barang/(:any)';
 $route['berita_acara/updateberita']         = 'Berita_acara/update_berita';
 $route['detail-print/(:any)']               = 'Berita_acara/print/(:any)';
-$route['detail-barang/(:any)']              = 'Welcome/detail_barang/(:any)';
 $route['berita_acara/uploadFotoBarang']     = 'Berita_acara/upload_foto_barang';
 $route['berita_acara/updatebarang']         = 'Berita_acara/update_barang';
 $route['berita_acara/getDetailBarang']      = 'Berita_acara/get_detail_barang';
@@ -39,6 +51,9 @@ $route['berita_acara/hapusbarang/(:any)']   = 'Berita_acara/hapus_barang/(:any)'
 $route['berita_acara/hapusfile/(:any)']     = 'Berita_acara/hapus_file/(:any)';
 $route['berita_acara/edit/(:any)']          = 'Berita_acara/edit/(:any)';
 $route['berita_acara/detail/(:any)']        = 'Berita_acara/detail/(:any)';
+
+//Guest access
+$route['detail-barang/(:any)']              = 'Welcome/detail_barang/(:any)';
 
 //Statistik
 $route['statistik'] = 'Statistik/index';
