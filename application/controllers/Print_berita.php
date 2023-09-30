@@ -22,15 +22,27 @@ class Print_berita extends CI_Controller {
 
 	public function index()
 	{
-		$data = array(
+		$data = [
 			'title' 				=> 'Qrcode Aset',
 			'active_print_berita' 	=> 'active',
 			'data' 					=> $this->db->get('tb_berita_acara'),  
-		);
+		];
 
 		$this->load->view('layouts/header_new',$data);
-		$this->load->view('new/v_print_berita',$data);
+		$this->load->view('print/v_print_berita',$data);
 		$this->load->view('layouts/footer');
+	}
+
+	public function pBeritaAcara(){
+		$data = [
+			'title' 					=> 'Print Berita Acara',
+			'detail' 					=> $this->db->get_where('tb_berita_acara',['id_berita' => $this->uri->segment(3)])->row(), 
+			'data' 						=> $this->db->get_where('tb_barang',['berita_id' => $this->uri->segment(3)]), 
+			'judul'						=> $this->db->get_where('tb_judul',['id_judul' => 1])->row(),
+			'file' 						=> $this->db->get_where('tb_file',['berita_id' => $this->uri->segment(3)]),
+		];
+
+		$this->load->view('print/p_berita_acara',$data);
 	}
 
 }
