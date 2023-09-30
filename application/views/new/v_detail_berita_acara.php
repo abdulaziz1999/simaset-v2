@@ -52,9 +52,9 @@
             <div class="card-body">
                 <h4 class="text-center mb-5">
                     <strong>
-                        PEMERINTAH DAERAH TANGERANG SELATAN
-                        <br>DINAS LINGKUNGAN HIDUP <br>
-                        BERITA ACARA SERAH TERIMA PEMBELIAN LAINNYA
+                        <?= $judul->judul_surat?><br>
+                        <?= $judul->text_2?> <br>
+                        <?= $judul->text_3?>
                     </strong>
                 </h4>
                 <div class="row pb-4">
@@ -83,7 +83,7 @@
                         </table>
                     </div>
                     <div class="col-md-6">
-                        <table style="float: right;">
+                        <table style="float: right; vertical-align:top;">
                             <tr>
                                 <td>Program</td>
                                 <td>:</td>

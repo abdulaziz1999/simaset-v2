@@ -33,9 +33,11 @@
             <div class="card-body">
                 <h4 class="text-center mb-5">
                     <strong class="wrap-text">
-                        PEMERINTAH DAERAH TANGERANG SELATAN
-                        <br>DINAS LINGKUNGAN HIDUP <br>
-                        BERITA ACARA SERAH TERIMA PEMBELIAN LAINNYA
+                        <?php //$judul= 'PEMERINTAH DAERAH TANGERANG SELATAN DINAS LINGKUNGAN HIDUP BERITA ACARA SERAH TERIMA PEMBELIAN LAINNYA';?>
+                        <?php //echo wordwrap($judul,45,"<br>")?>
+                        <?= $judul->judul_surat?><br>
+                        <?= $judul->text_2?> <br>
+                        <?= $judul->text_3?>
                     </strong>
                 </h4>
                 <div class="row pb-4">
