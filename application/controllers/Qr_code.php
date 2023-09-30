@@ -22,15 +22,27 @@ class Qr_code extends CI_Controller {
 
 	public function index()
 	{
-		$data = array(
+		$data = [
 			'title' 				=> 'Qrcode Aset',
 			'active_menu_qrcode' 	=> 'active',
 			'data' 					=> $this->db->get('tb_berita_acara'),  
-		);
-
+		];
+		
 		$this->load->view('layouts/header_new',$data);
-		$this->load->view('new/v_qrcode',$data);
+		$this->load->view('print/v_qrcode',$data);
 		$this->load->view('layouts/footer');
+	}
+	
+	public function pQrcode(){
+		$data = [
+			'title' 	=> 'Print Berita Acara',
+			'detail' 	=> $this->db->get_where('tb_berita_acara',['id_berita' => $this->uri->segment(2)])->row(), 
+			'data' 		=> $this->db->get_where('tb_barang',['berita_id' => $this->uri->segment(2)]), 
+			'barang' 	=> $this->db->get_where('tb_barang',['berita_id' => $this->uri->segment(3)]),
+			'judul'		=> $this->db->get_where('tb_judul',['id_judul' => 1])->row()
+		];
+
+		$this->load->view('print/p_qrcode',$data);
 	}
 
 }
