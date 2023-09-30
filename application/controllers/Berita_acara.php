@@ -39,7 +39,8 @@ class Berita_acara extends CI_Controller {
 			'active_menu_berita_acara' 	=> 'active',
 			'detail' 					=> $this->db->get_where('tb_berita_acara',['id_berita' => $this->uri->segment(3)])->row(), 
 			'data' 						=> $this->db->get_where('tb_barang',['berita_id' => $this->uri->segment(3)]),  
-			'file' 						=> $this->db->get_where('tb_file',['berita_id' => $this->uri->segment(3)]),  
+			'file' 						=> $this->db->get_where('tb_file',['berita_id' => $this->uri->segment(3)]),
+			'judul'						=> $this->db->get_where('tb_judul',['id_judul' => 1])->row()
 		];
 
 		$this->load->view('layouts/header_new',$data);
@@ -54,7 +55,8 @@ class Berita_acara extends CI_Controller {
 			'active_menu_berita_acara' 	=> 'active',
 			'detail' 					=> $this->db->get_where('tb_berita_acara',['id_berita' => $this->uri->segment(2)])->row(), 
 			'data' 						=> $this->db->get_where('tb_barang',['berita_id' => $this->uri->segment(2)]),  
-			'file' 						=> $this->db->get_where('tb_file',['berita_id' => $this->uri->segment(2)]),  
+			'file' 						=> $this->db->get_where('tb_file',['berita_id' => $this->uri->segment(2)]),
+			'judul'						=> $this->db->get_where('tb_judul',['id_judul' => 1])->row()
 		];
 
 		$this->load->view('new/print',$data);
@@ -247,9 +249,9 @@ class Berita_acara extends CI_Controller {
 					'berita_id' 	=> $uri,
 				];
 				
-				// $this->db->insert('tb_barang',$data);
-				// $this->session->set_flashdata('sukses', 'Disimpan');
-				// redirect($_SERVER['HTTP_REFERER']);
+				$this->db->insert('tb_barang',$data);
+				$this->session->set_flashdata('sukses', 'Disimpan');
+				redirect($_SERVER['HTTP_REFERER']);
 				
 			}
 		}
@@ -272,6 +274,7 @@ class Berita_acara extends CI_Controller {
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
+	//DETAIL BARANG BY ID
 	public function get_detail_barang(){
 		$id		= $this->input->post('id',TRUE);
 		$data 	= $this->db->get_where('tb_barang', ['id_barang' => $id])->row_array();
@@ -533,8 +536,8 @@ class Berita_acara extends CI_Controller {
 				$config['imagedir']     = './src/img/qrcode/'; 
 				$config['quality']      = true; 
 				$config['size']         = '1024'; 
-				$config['black']        = array(224,255,255); 
-				$config['white']        = array(70,130,180); 
+				$config['black']        = [224,255,255]; 
+				$config['white']        = [70,130,180]; 
 				$this->ciqrcode->initialize($config);
 
 				$id = $this->uuid->v4();
