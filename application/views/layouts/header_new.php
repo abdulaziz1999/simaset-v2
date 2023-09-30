@@ -21,6 +21,9 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- jQuery -->
   <script src="<?=base_url()?>src/backend/plugins/jquery/jquery.min.js"></script>
+  <script>
+    let baseUrl = "<?=base_url()?>";
+  </script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -125,12 +128,20 @@
             <p>Dashboard</p>
           </a>
         </li>
+        <li class="nav-item has-treeview ml-3"><b>Layanan</b></li>
+        <li class="nav-item has-treeview">
+          <a href="<?=base_url('judul_berita')?>" class="nav-link <?=isset($active_menu_judul)?$active_menu_judul:'' ?>">
+            <i class="nav-icon fas fa-copy"></i>
+            <p>Judul Berita Acara</p>
+          </a>
+        </li>
         <li class="nav-item has-treeview">
           <a href="<?=base_url('berita_acara')?>" class="nav-link <?=isset($active_menu_berita_acara)?$active_menu_berita_acara:'' ?>">
             <i class="nav-icon fas fa-map"></i>
             <p>Berita Acara</p>
           </a>
         </li>
+        <li class="nav-item has-treeview ml-3"><b>Cetak</b></li>
         <li class="nav-item has-treeview">
           <a href="<?=base_url('qr_code')?>" class="nav-link <?=isset($active_menu_qrcode)?$active_menu_qrcode:'' ?>">
             <i class="nav-icon fas fa-qrcode"></i>
@@ -143,6 +154,7 @@
             <p>Print Berita Acara</p>
           </a>
         </li>
+        <li class="nav-item has-treeview ml-3"><b>Akses</b></li>
         <li class="nav-item has-treeview">
           <a href="<?=base_url('users')?>" class="nav-link <?=isset($active_menu_user)?$active_menu_user:'' ?>">
             <i class="nav-icon fa fa-users"></i>
