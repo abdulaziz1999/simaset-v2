@@ -177,7 +177,6 @@
 <script src="<?=base_url()?>src/backend/plugins/datatables/jquery.dataTables.js"></script>
 <script src="<?=base_url()?>src/backend/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 <script>
-var baseUrl = '<?=base_url()?>';
 $(function() {
     $("#example1").DataTable({
         "language": {
