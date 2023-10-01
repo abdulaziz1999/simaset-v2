@@ -96,7 +96,8 @@
     });
    
     const editJudul = (id) => {
-      $('#modal-title').text('Edit Judul')
+      $('.modal-title').css('font-weight', 'bold');
+      $('.modal-title').text('Edit Judul Berita Acara')
       $.ajax({
           url: baseUrl + 'judul_berita/detailJudul',
           type: 'POST',
