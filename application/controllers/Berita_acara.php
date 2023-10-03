@@ -232,8 +232,6 @@ class Berita_acara extends CI_Controller {
 				$config['new_image']= 'src/img/surat/'.$gbr['file_name'];
 				$this->load->library('image_lib', $config);
 				$this->image_lib->resize();
-				$id = $this->uuid->v4();
-				$random_id = str_replace('-', '', $id);
 				
 				$data = [
 					'id_barang'  	=> $random_id,

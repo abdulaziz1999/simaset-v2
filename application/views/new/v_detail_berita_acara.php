@@ -33,12 +33,12 @@
 
                 <div class="card-tools">
                   <div class="btn-group">
-                      <a href="#" class="btn btn-sm bg-gradient-primary"
+                      <a href="javascript:void(0)" class="btn btn-sm bg-gradient-primary" onclick="addBarang()"
                           data-toggle="modal" data-target="#modal-add-barang">
                           <i class="fa fa-plus"></i> Tambah Data
                       </a>
                       &nbsp;
-                      <a href="#" class="btn btn-sm bg-gradient-success"
+                      <a href="javascript:void(0)" class="btn btn-sm bg-gradient-success"
                           data-toggle="modal" data-target="#modal-import">
                           <i class="fa fa-file-excel"></i> Import Data
                       </a>
@@ -206,6 +206,14 @@ $('#edit-gambar-input2').change(function() {
         reader.readAsDataURL(fileInput.files[0]);
     }
 });
+
+const addBarang = () => {
+    $('.modal-title').css('font-weight', 'bold');
+    $('.modal-title').text('Tambah Barang');
+    $('.form-horizontal')[0].reset();
+    var urlFoto = baseUrl + 'src/img/logo/placeholder.png';
+    $('#edit-gambar').attr('src', urlFoto);
+}
 
 const tombolUpload = (id) => { 
         $('#id_barang_upload').val(id);
