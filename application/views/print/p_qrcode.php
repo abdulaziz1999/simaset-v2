@@ -20,7 +20,7 @@
   </head>
   <body>
 
-    <!-- <meta http-equiv="REFRESH" content="5; url=<?php//base_url('qr_code')?>"> -->
+    <meta http-equiv="REFRESH" content="5; url=<?=base_url('qr_code')?>">
     
     <div class="container">
       <div class="row mt-3">
@@ -29,7 +29,7 @@
           <table>
             <tr class="border_bottom">
               <td>
-                <img class="card-img-top" src="<?php echo base_url().'src/img/qrcode/'.$row->qrcode;?>" alt="Card image cap">
+                <img class="card-img-top" src="<?= base_url().'src/img/qrcode/'.$row->qrcode;?>" alt="Card image cap">
                 <p style="font-size:8px;text-align:center" class="font-weight-bold"><?=$row->kode_barang;?></p>
               </td>
             </tr>
