@@ -20,17 +20,17 @@
   </head>
   <body>
 
-    <meta http-equiv="REFRESH" content="5; url=<?=base_url('qr_code')?>">
+    <!-- <meta http-equiv="REFRESH" content="5; url=<?php//base_url('qr_code')?>"> -->
     
     <div class="container">
       <div class="row mt-3">
         <?php foreach ($barang->result() as $row) {?>
-        <div class="col-md-2">
+        <div class="col-md-2 mt-3">
           <table>
             <tr class="border_bottom">
               <td>
                 <img class="card-img-top" src="<?php echo base_url().'src/img/qrcode/'.$row->qrcode;?>" alt="Card image cap">
-                <p style="font-size:8px;text-align:center"><?=$row->kode_barang;?></p>
+                <p style="font-size:8px;text-align:center" class="font-weight-bold"><?=$row->kode_barang;?></p>
               </td>
             </tr>
           </table>
