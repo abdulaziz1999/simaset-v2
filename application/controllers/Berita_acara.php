@@ -443,7 +443,7 @@ class Berita_acara extends CI_Controller {
                     // File upload configuration 
                     $uploadPath = 'src/file/'; 
                     $config['upload_path'] = $uploadPath; 
-                    $config['allowed_types'] = 'jpg|jpeg|png|gif'; 
+                    $config['allowed_types'] = 'jpg|jpeg|png|gif|pdf'; 
                     //$config['max_size']    = '100'; 
                     //$config['max_width'] = '1024'; 
                     //$config['max_height'] = '768'; 
