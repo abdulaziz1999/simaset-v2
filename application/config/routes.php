@@ -43,6 +43,7 @@ $route['berita_acara/upload/(:any)']        = 'Berita_acara/upload';
 $route['berita_acara/saveberita']           = 'Berita_acara/save_berita';
 $route['berita_acara/savebarang/(:any)']    = 'Berita_acara/save_barang/(:any)';
 $route['berita_acara/updateberita']         = 'Berita_acara/update_berita';
+$route['berita_acara/deleteBerita/(:any)']  = 'Berita_acara/deleteBerita';
 $route['detail-print/(:any)']               = 'Berita_acara/print/(:any)';
 $route['berita_acara/uploadFotoBarang']     = 'Berita_acara/upload_foto_barang';
 $route['berita_acara/updatebarang']         = 'Berita_acara/update_barang';
