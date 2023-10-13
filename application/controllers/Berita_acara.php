@@ -310,6 +310,8 @@ class Berita_acara extends CI_Controller {
 	//DELETE FILE LAMPIRAN BERITA ACARA
 	public function hapus_file($id_barang){
 		$uri = $this->uri->segment(3);
+		$data = $this->db->get_where('tb_file',['id' =>$uri])->row_array();
+		unlink('src/file/'.$data['file_name']);
 		$this->db->delete('tb_file',['id' => $uri]);
 		$this->session->set_flashdata('sukses', 'Dihapus');
 		redirect($_SERVER['HTTP_REFERER']);
@@ -591,5 +593,45 @@ class Berita_acara extends CI_Controller {
 		}
 		redirect($_SERVER['HTTP_REFERER']);
 	}
+
+	function deleteBerita(){
+		$id_berita = $this->uri->segment(3);
+		// Mengambil daftar barang dengan id_berita yang sama
+		$this->db->select('id_barang, foto, qrcode');
+		$this->db->where('berita_id', $id_berita);
+		$query = $this->db->get('tb_barang');
+		$barang_data = $query->result(); // Menyimpan hasil query ke dalam array barang_data
+	
+		// Looping untuk setiap barang
+		foreach ($barang_data as $barang) {
+			// Menghapus file foto dan qrcode
+			unlink('src/img/qrcode/' . $barang->qrcode);
+			unlink('src/img/surat/' . $barang->foto);
+	
+			// Menghapus barang berdasarkan id_barang
+			$this->db->where('id_barang', $barang->id_barang);
+			$this->db->delete('tb_barang');
+		}
+	
+		// Mengambil daftar file dengan berita_id yang sama
+		$this->db->select('id, file_name');
+		$this->db->where('berita_id', $id_berita);
+		$file_query = $this->db->get('tb_file');
+		$file_data = $file_query->result(); // Menyimpan hasil query ke dalam array file_data
+	
+		// Looping untuk setiap file
+		foreach ($file_data as $file) {
+			// Menghapus file file
+			unlink('src/file/' . $file->file_name);
+	
+			// Menghapus file berdasarkan id
+			$this->db->where('id', $file->id);
+			$this->db->delete('tb_file');
+		}
+		$this->db->where('id_berita', $id_berita);
+		$this->db->delete('tb_berita_acara');
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+	
 
 }

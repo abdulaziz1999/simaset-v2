@@ -92,6 +92,7 @@
                     </td>
                     <td>
                       <a href="<?= base_url('berita_acara/detail/'.$row->id_berita)?>" class="btn btn-sm btn-success"> <i class="fa fa-eye"></i></a>
+                      <a href="javascript:()" onclick="handleHapus('<?= $row->id_berita?>')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                     </td>
                 </tr>
               <?php endforeach ?>
@@ -136,4 +137,10 @@
         $('#berita_id').val(id);
       }
 
+      const handleHapus = (id) => {
+        var konfirm = confirm('Apakah Anda Ingin Menghapus Data !');
+        if (konfirm) {
+            window.location.href = "<?= base_url('berita_acara/deleteBerita/')?>" + id;
+        }
+    }
   </script>
