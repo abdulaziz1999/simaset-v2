@@ -128,7 +128,7 @@
             <p>Dashboard</p>
           </a>
         </li>
-        <li class="nav-item has-treeview ml-3"><b>Layanan</b></li>
+        <li class="nav-item has-treeview ml-3"><b>Berita</b></li>
         <li class="nav-item has-treeview">
           <a href="<?=base_url('judul_berita')?>" class="nav-link <?=isset($active_menu_judul)?$active_menu_judul:'' ?>">
             <i class="nav-icon fas fa-copy"></i>
@@ -152,6 +152,12 @@
           <a href="<?=base_url('print_berita')?>" class="nav-link <?=isset($active_print_berita)?$active_print_berita:'' ?>">
             <i class="nav-icon fas fa-print"></i>
             <p>Print Berita Acara</p>
+          </a>
+        </li>
+        <li class="nav-item has-treeview">
+          <a href="<?=base_url('print_barang')?>" class="nav-link <?=isset($active_print_barang)?$active_print_barang:'' ?>">
+            <i class="nav-icon fas fa-book"></i>
+            <p>Print Per Barang</p>
           </a>
         </li>
         <li class="nav-item has-treeview ml-3"><b>Akses</b></li>
