@@ -30,7 +30,7 @@ $route['qr_code/pQrcode/(:any)']            = 'Qr_code/pQrcode';
 $route['print_berita']                      = 'Print_berita/index';
 $route['print_berita/pBeritaAcara/(:any)']  = 'Print_berita/pBeritaAcara';
 $route['print_barang']                      = 'Print_barang/index';
-$route['print_barang/pbarang/(:any)']       = 'Print_barang/pBarang';
+$route['print_barang/pBarang/(:any)']       = 'Print_barang/pBarang';
 
 //Judul Berita Acara
 $route['judul_berita']                      = 'Judul_berita/index';
