@@ -52,7 +52,7 @@
                 <th>Program</th>
                 <th>Kegitan</th>
                 <th>No Arsip</th>
-                <th width="20%">Aksi</th>
+                <th width="10%">Aksi</th>
               </tr>
             </thead>
             <tbody>

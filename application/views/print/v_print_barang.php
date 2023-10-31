@@ -51,7 +51,7 @@
                 <th>Harga Barang</th>
                 <th>Keterangan</th>
                 <th>QR</th>
-                <th width="20%">Aksi</th>
+                <th width="6%">Aksi</th>
               </tr>
             </thead>
             <tbody>
