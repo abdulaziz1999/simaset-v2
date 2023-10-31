@@ -21,7 +21,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <div class="alert alert-info">
+        <div class="alert alert-primary">
             <h5> 
               <?php
 
@@ -56,7 +56,7 @@
           <div class="row">
             <div class="col-lg-4 col-6">
               <!-- small box -->
-              <div class="small-box bg-info">
+              <div class="small-box bg-gradient-success">
                 <div class="inner">
                   <h3><?=$berita_acara;?></h3>
 
@@ -71,7 +71,7 @@
             <!-- ./col -->
             <div class="col-lg-4 col-6">
               <!-- small box -->
-              <div class="small-box bg-success">
+              <div class="small-box bg-gradient-primary">
                 <div class="inner">
                   <h3><?=$barang;?></h3>
 
@@ -105,7 +105,7 @@
             <!-- ./col -->
             <div class="col-lg-4 col-6">
               <!-- small box -->
-              <div class="small-box bg-warning">
+              <div class="small-box bg-gradient-warning">
                 <div class="inner">
                   <h3><?=$users;?></h3>
 
