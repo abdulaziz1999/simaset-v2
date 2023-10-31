@@ -36,13 +36,13 @@
                 
               </div>
 
-              <h3 class="profile-username text-center"><?php echo $this->session->userdata('nama_user');?></h3>
+              <h3 class="profile-username text-center"><?= $this->session->userdata('nama_user');?></h3>
 
-              <p class="text-muted text-center"><?php echo $this->session->userdata('jabatan');?></p>
+              <p class="text-muted text-center"><?= $this->session->userdata('jabatan');?></p>
 
               <ul class="list-group list-group-unbordered mb-3">
                 <li class="list-group-item text-center">
-                  <b>Aset Apps</b>
+                  <b>ASET APPS</b>
                 </li>
               </ul>
             </div>
@@ -81,19 +81,19 @@
                       <div class="form-group row">
                         <label for="nama_user" class="col-sm-2 col-form-label">Nama User</label>
                         <div class="col-sm-6">
-                          <input type="text" value="<?php echo $this->session->userdata('nama_user');?>" class="form-control" name="nama_user" placeholder="Masukan Nama User.." required>
+                          <input type="text" value="<?= $this->session->userdata('nama_user');?>" class="form-control" name="nama_user" placeholder="Masukan Nama User.." required>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="username" class="col-sm-2 col-form-label">Username</label>
                         <div class="col-sm-6">
-                          <input type="text" value="<?php echo $this->session->userdata('username');?>" class="form-control" name="username" placeholder="Masukan Username.." required>
+                          <input type="text" value="<?= $this->session->userdata('username');?>" class="form-control" name="username" placeholder="Masukan Username.." required>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="jabatan" class="col-sm-2 col-form-label">Jabatan</label>
                         <div class="col-sm-6">
-                          <input type="text" class="form-control" value="<?php echo $this->session->userdata('jabatan');?>" name="jabatan" placeholder="Masukan Jabatan.." required>
+                          <input type="text" class="form-control" value="<?= $this->session->userdata('jabatan');?>" name="jabatan" placeholder="Masukan Jabatan.." required>
                         </div>
                       </div>
                       <div class="form-group row">
