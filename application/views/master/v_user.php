@@ -5,12 +5,11 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>User</h1>
+          <h4 class="font-weight-bold">User</h4>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="<?=base_url('home')?>">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Data Master</a></li>
+            <li class="breadcrumb-item"><a href="<?=base_url('dashboard')?>">Dashboard</a></li>
             <li class="breadcrumb-item active">User</li>
           </ol>
         </div>
@@ -40,7 +39,7 @@
         <?=form_error('password','<div class="alert alert-danger" role="alert">','</div>')?>
 
         <h3 class="card-title">
-          <button type="button" data-toggle="modal" data-target="#modal-default" class="btn btn-block bg-gradient-primary">Tambah User</button>
+          <button type="button" data-toggle="modal" data-target="#modal-default" class="btn btn-sm bg-gradient-primary"><i class="fa fa-plus"></i> Tambah User</button>
         </h3>
 
         <div class="card-tools">
