@@ -33,13 +33,13 @@ class Print_barang extends CI_Controller {
 		$this->load->view('layouts/footer');
 	}
 
-	public function pBeritaAcara(){
+	public function pBarang(){
 		$data = [
-			'title' => 'Print Barang',
-			'detail'=> $this->db->get_where('tb_berita_acara',['id_berita' => $this->uri->segment(3)])->row(), 
-			'data' 	=> $this->db->get_where('tb_barang',['berita_id' => $this->uri->segment(3)]), 
-			'judul'	=> $this->db->get_where('tb_judul',['id_judul' => 1])->row(),
-			'file' 	=> $this->db->get_where('tb_file',['berita_id' => $this->uri->segment(3)]),
+			'title' 	=> 'Print Berita Acara',
+			'detail' 	=> $this->db->get_where('tb_berita_acara',['id_berita' => $this->uri->segment(2)])->row(), 
+			'data' 		=> $this->db->get_where('tb_barang',['berita_id' => $this->uri->segment(2)]), 
+			'barang' 	=> $this->db->get_where('tb_barang',['id_barang' => $this->uri->segment(3)]),
+			'judul'		=> $this->db->get_where('tb_judul',['id_judul' => 1])->row()
 		];
 
 		$this->load->view('print/p_barang',$data);
