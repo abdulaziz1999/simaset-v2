@@ -18,7 +18,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" style="background-image: url('<?=base_url('src/img/logo/bg-01.jpg')?>'); background-size: cover;">
 
   <?php
     if (null !== $this->session->userdata('logged')){
@@ -28,7 +28,7 @@
 
 <div class="login-box">
   <div class="login-logo">
-    <a href=""><b>Aset Apps</b></a>
+    <h3 class="text-white"><b>ASET APPS</b></h3>
   </div>
   <!-- /.login-logo -->
   <div class="card" style="border-radius:5px;">
@@ -43,7 +43,7 @@
         </div>
       <?php } ?>
 
-      <p class="login-box-msg">Masukan Username dan Password</p>
+      <h4 class="login-box-msg"><b>LOGIN</b></h4>
 
       <form action="<?=base_url('proses_login')?>" method="post" autocomplete="off">
         <div class="input-group mb-3">
@@ -65,17 +65,17 @@
         </div>
         <?php echo form_error('password'); ?>
         <div class="row">
-          <div class="col-8">
+          <!-- <div class="col-8">
             <div class="icheck-primary">
               <input type="checkbox" id="remember">
               <label for="remember">
                 Remember Me
               </label>
             </div>
-          </div>
+          </div> -->
           <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Login</button>
+          <div class="col-12 mt-2">
+            <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-sign-in-alt"></i> Login</button>
           </div>
           <!-- /.col -->
         </div>
