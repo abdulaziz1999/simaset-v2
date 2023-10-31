@@ -63,7 +63,7 @@
                 <th>No Arsip</th>
                 <th>Jumlah Barang</th>
                 <th>Upload File</th>
-                <th>Aksi</th>
+                <th width="6%">Aksi</th>
               </tr>
             </thead>
             <tbody>
@@ -91,8 +91,10 @@
                       </button>
                     </td>
                     <td>
-                      <a href="<?= base_url('berita_acara/detail/'.$row->id_berita)?>" class="btn btn-sm btn-success"> <i class="fa fa-eye"></i></a>
-                      <a href="javascript:()" onclick="handleHapus('<?= $row->id_berita?>')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                      <div class="btn-group">
+                        <a href="<?= base_url('berita_acara/detail/'.$row->id_berita)?>" class="btn btn-sm btn-success mr-1"> <i class="fa fa-eye"></i></a>
+                        <a href="javascript:()" onclick="handleHapus('<?= $row->id_berita?>')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                      </div>
                     </td>
                 </tr>
               <?php endforeach ?>
