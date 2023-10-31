@@ -43,7 +43,7 @@
           <div class="card-body"> 
           <div class="table-responsive">
           <table id="example1" class="table table-bordered table-striped table-sm">
-            <thead>
+            <thead class="bg-gradient-primary">
                 <tr>
                     <th rowspan="2">No</th>
                     <th colspan="3" class="text-center">Judul Berita Acara</th>
