@@ -63,7 +63,7 @@
                   <p>Total Berita Acara</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-android-home"></i>
+                  <i class="ion ion-android-map"></i>
                 </div>
                 <a href="<?=base_url('berita_acara')?>" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
               </div>
@@ -78,7 +78,7 @@
                   <p>Total Barang Barang</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-android-desktop"></i>
+                  <i class="ion ion-ios-folder"></i>
                 </div>
                 <a href="<?=base_url('berita_acara')?>" class="small-box-footer">Selengkapnya 
                   <i class="fas fa-arrow-circle-right"></i>
@@ -112,7 +112,7 @@
                   <p>Pengguna</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-person"></i>
+                  <i class="ion ion-android-contacts"></i>
                 </div>
                 <a href="<?=base_url('users')?>" class="small-box-footer">Selengkapnya 
                   <i class="fa fa-arrow-circle-right"></i>
