@@ -40,7 +40,7 @@
           <div class="card-body"> 
           <div class="table-responsive">
           <table id="example1" class="table table-bordered table-striped table-sm">
-            <thead>
+            <thead class="bg-gradient-primary">
               <tr>
                 <th>No.</th>
                 <th>No Berita Acara</th>
@@ -68,7 +68,7 @@
                     <td><?= $row->no_arsip?></td>
                     <td>
                       <div class="btn-group">
-                          <button class="btn btn-sm btn-secondary"> 
+                          <button class="btn btn-sm btn-success"> 
                             <i class="fa fa-briefcase"></i> &nbsp; 
                             <span class="badge badge-light"><?= count_barang($row->id_berita)?></span>
                           </button>
