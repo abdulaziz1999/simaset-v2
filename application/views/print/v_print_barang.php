@@ -74,7 +74,7 @@
                     </td>
                     <td>
                       <div class="btn-group">
-                          <a href="<?= base_url('print_berita/pBeritaAcara/'.$row->id_barang)?>" class="btn btn-sm btn-danger"> <i class="fa fa-print"></i></a>
+                          <a href="<?= base_url('print_barang/pBarang/'.$row->id_barang)?>" class="btn btn-sm btn-danger"> <i class="fa fa-print"></i></a>
                       </div>
                     </td>
                 </tr>
