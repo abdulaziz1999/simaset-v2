@@ -57,6 +57,11 @@
                       <td width="50px">:</td>
                       <td><?=$item['kode_barang'] ?></td>
                   </tr>
+                  <tr>                       
+                      <td width="100px">NO ARSIP</td>
+                      <td width="50px">:</td>
+                      <td><?=$detail['no_arsip'] ?></td>
+                  </tr>
                   <tr>
                       <td width="200px">TANGGAL PENERIMAAN</td>
                       <td width="50px">:</td>
