@@ -130,7 +130,12 @@ if (!function_exists('clean_currency')) {
 if (!function_exists('format_currency')) {
 	function format_currency($amount) {
 		// Menggunakan number_format untuk menambahkan tanda koma dan dua angka desimal
-		return number_format($amount, 2, '.', ',');
+		if($amount == ''){
+			$data = '';
+		}else{
+			$data = number_format($amount, 2, '.', ',');
+		}
+		return $data;
 	}
 }
 
