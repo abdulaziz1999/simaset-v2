@@ -22,7 +22,7 @@
 
   <?php
     if (null !== $this->session->userdata('logged')){
-      redirect(site_url('home'));
+      redirect(site_url('dashboard'));
     }
   ?>
 
