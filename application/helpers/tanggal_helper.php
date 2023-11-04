@@ -131,11 +131,11 @@ if (!function_exists('format_currency')) {
 	function format_currency($amount) {
 		// Menggunakan number_format untuk menambahkan tanda koma dan dua angka desimal
 		if($amount == ''){
-			$data = '';
+			@$data = '';
 		}else{
-			$data = number_format($amount, 2, '.', ',');
+			@$data = @number_format($amount, 2, '.', ',');
 		}
-		return $data;
+		return @$data;
 	}
 }
 
