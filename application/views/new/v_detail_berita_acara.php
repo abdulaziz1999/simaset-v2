@@ -122,7 +122,7 @@
                                 <td><?= $row->nama_umum?></td>
                                 <td><?= $row->spesifikasi?></td>
                                 <td><?= $row->jumlah?></td>
-                                <td><?= $row->harga ?></td>
+                                <td><?= @$row->harga ? @format_currency($row->harga) : ''?></td>
                                 <td><?= $row->ket?></td>
                                 <td>
                                     <?php if($row->qrcode){?>
